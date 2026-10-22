@@ -73,7 +73,7 @@ export const AppContent: React.FC = () => {
   if (currentScreen === 'portal') {
     return (
       <>
-        <TrackSelectorPortal onSelectTrack={() => setCurrentScreen('dashboard')} />
+        <TrackSelectorPortal onSelectTrack={() => setCurrentScreen('learn')} />
         <ToastContainer />
       </>
     );

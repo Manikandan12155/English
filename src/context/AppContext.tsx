@@ -70,13 +70,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return 'vocabulary';
   });
 
-  const [currentScreen, setCurrentScreen] = useState<ViewScreen>(() => {
-    if (typeof window !== 'undefined') {
-      const hasChosen = localStorage.getItem('vocabmaster_has_chosen_track');
-      if (!hasChosen) return 'portal';
-    }
-    return 'dashboard';
-  });
+  // Always start at Home Page (portal) on initial launch / app load
+  const [currentScreen, setCurrentScreen] = useState<ViewScreen>('portal');
 
   const [activeWordId, setActiveWordId] = useState<number | null>(null);
   const [studyQueue, setStudyQueue] = useState<VocabularyWord[]>([]);

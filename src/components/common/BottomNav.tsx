@@ -13,7 +13,7 @@ export const BottomNav: React.FC = () => {
   const { currentScreen, setCurrentScreen, learningTrack } = useApp();
 
   const tabs: { id: ViewScreen; label: string; icon: React.ReactNode }[] = [
-    { id: 'dashboard', label: 'Home', icon: <Home className="w-5 h-5" /> },
+    { id: 'portal', label: 'Home', icon: <Home className="w-5 h-5" /> },
     { id: 'learn', label: 'Learn', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'review', label: 'Review', icon: <RotateCw className="w-5 h-5" /> },
     { id: 'stats', label: 'Stats', icon: <BarChart2 className="w-5 h-5" /> },
