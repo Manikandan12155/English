@@ -1,18 +1,11 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Search, 
-  Volume2, 
-  MoreVertical, 
-  Check, 
-  Trash2, 
-  CheckCircle2, 
-  HelpCircle, 
-  XCircle
+  Volume2
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
-import { VocabularyWord, WordStatus } from '../../types/vocabulary';
+import { VocabularyWord } from '../../types/vocabulary';
 import { speechService } from '../../services/speechService';
-import { db } from '../../db/database';
 
 interface WordListViewProps {
   onOpenFilter?: () => void;
@@ -28,14 +21,9 @@ export const WordListView: React.FC<WordListViewProps> = ({
     words, 
     filterOptions, 
     setFilterOptions, 
-    handleWordStatusChange, 
-    addToast, 
-    triggerRefresh,
     learningTrack
   } = useApp();
 
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [activeMenuId, setActiveMenuId] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 15;
 
@@ -98,37 +86,6 @@ export const WordListView: React.FC<WordListViewProps> = ({
       setCurrentPage(1);
     }
   }, [totalPages, currentPage]);
-
-  const toggleSelectAll = () => {
-    if (selectedIds.length === paginatedWords.length) {
-      setSelectedIds([]);
-    } else {
-      setSelectedIds(paginatedWords.map(w => w.id!).filter(Boolean));
-    }
-  };
-
-  const toggleSelectWord = (id: number) => {
-    setSelectedIds(prev => 
-      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
-    );
-  };
-
-  const handleBulkStatus = async (status: WordStatus) => {
-    if (selectedIds.length === 0) return;
-    await Promise.all(selectedIds.map(id => handleWordStatusChange(id, status)));
-    setSelectedIds([]);
-    addToast(`Updated ${selectedIds.length} words to ${status.toUpperCase()}!`, 'success');
-  };
-
-  const handleBulkDelete = async () => {
-    if (selectedIds.length === 0) return;
-    if (confirm(`Are you sure you want to delete ${selectedIds.length} words?`)) {
-      await db.words.bulkDelete(selectedIds);
-      setSelectedIds([]);
-      triggerRefresh();
-      addToast('Deleted selected words', 'info');
-    }
-  };
 
   return (
     <div className="max-w-6xl mx-auto space-y-4 pb-20 lg:pb-8 pt-1">
@@ -209,93 +166,35 @@ export const WordListView: React.FC<WordListViewProps> = ({
         </div>
       )}
 
-      {/* Bulk Action Toolbar if items selected */}
-      {selectedIds.length > 0 && (
-        <div className="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/60 p-3 rounded-2xl flex items-center justify-between animate-fade-in text-xs font-semibold">
-          <span className="text-indigo-900 dark:text-indigo-300 font-bold ml-2">
-            {selectedIds.length} words selected
-          </span>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => handleBulkStatus('known')}
-              className="px-2.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white flex items-center gap-1 shadow-sm"
-            >
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>Known</span>
-            </button>
-            <button
-              onClick={() => handleBulkStatus('understand')}
-              className="px-2.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1 shadow-sm"
-            >
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>Understand</span>
-            </button>
-            <button
-              onClick={() => handleBulkStatus('new')}
-              className="px-2.5 py-1.5 rounded-lg bg-rose-500 hover:bg-rose-600 text-white flex items-center gap-1 shadow-sm"
-            >
-              <XCircle className="w-3.5 h-3.5" />
-              <span>New</span>
-            </button>
-            <button
-              onClick={handleBulkDelete}
-              className="px-2.5 py-1.5 rounded-lg bg-slate-700 hover:bg-red-600 text-white flex items-center gap-1 transition"
-            >
-              <Trash2 className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Responsive Table (Panel 9) */}
       <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
               <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/75 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider text-[11px]">
-                <th className="p-4 w-10 text-center">
-                  <input
-                    type="checkbox"
-                    checked={selectedIds.length === paginatedWords.length && paginatedWords.length > 0}
-                    onChange={toggleSelectAll}
-                    className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
-                  />
-                </th>
                 <th className="p-4 w-12 text-center">#</th>
                 <th className="p-4">Word</th>
                 <th className="p-4">Level</th>
                 <th className="p-4">Type</th>
-                <th className="p-4">Meaning (Short)</th>
-                <th className="p-4 text-center">Status</th>
-                <th className="p-4 text-center w-12">Action</th>
+                <th className="p-4">Meaning</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
               {paginatedWords.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="p-12 text-center text-slate-400 font-medium">
+                  <td colSpan={5} className="p-12 text-center text-slate-400 font-medium">
                     No vocabulary words match your search or active filters.
                   </td>
                 </tr>
               ) : (
                 paginatedWords.map((word, index) => {
                   const globalIndex = (currentPage - 1) * itemsPerPage + index + 1;
-                  const isChecked = selectedIds.includes(word.id!);
 
                   return (
                     <tr 
                       key={word.id}
                       className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition group"
                     >
-                      {/* Checkbox */}
-                      <td className="p-4 text-center">
-                        <input
-                          type="checkbox"
-                          checked={isChecked}
-                          onChange={() => toggleSelectWord(word.id!)}
-                          className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
-                        />
-                      </td>
 
                       {/* Number */}
                       <td className="p-4 text-center font-mono text-xs text-slate-400">
@@ -343,58 +242,9 @@ export const WordListView: React.FC<WordListViewProps> = ({
                         {word.partOfSpeech}
                       </td>
 
-                      {/* Short Meaning */}
-                      <td className="p-4 max-w-xs text-slate-700 dark:text-slate-300 truncate">
+                      {/* Meaning */}
+                      <td className="p-4 text-slate-700 dark:text-slate-300">
                         {word.simpleMeaning || word.meaning}
-                      </td>
-
-                      {/* Status pill (Panel 9) */}
-                      <td className="p-4 text-center">
-                        <div className="inline-flex items-center gap-1">
-                          <button
-                            onClick={() => handleWordStatusChange(word.id!, 'known')}
-                            title="Mark Known"
-                            className={`p-1.5 rounded-lg transition ${
-                              word.status === 'known' 
-                                ? 'bg-emerald-500 text-white shadow-sm' 
-                                : 'text-slate-300 hover:text-emerald-500'
-                            }`}
-                          >
-                            <CheckCircle2 className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => handleWordStatusChange(word.id!, 'understand')}
-                            title="Mark Understand"
-                            className={`p-1.5 rounded-lg transition ${
-                              word.status === 'understand' 
-                                ? 'bg-amber-500 text-white shadow-sm' 
-                                : 'text-slate-300 hover:text-amber-500'
-                            }`}
-                          >
-                            <HelpCircle className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => handleWordStatusChange(word.id!, 'new')}
-                            title="Mark New"
-                            className={`p-1.5 rounded-lg transition ${
-                              word.status === 'new' 
-                                ? 'bg-rose-500 text-white shadow-sm' 
-                                : 'text-slate-300 hover:text-rose-500'
-                            }`}
-                          >
-                            <XCircle className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </td>
-
-                      {/* Three dots / Details */}
-                      <td className="p-4 text-center">
-                        <button
-                          onClick={() => onOpenDetails(word)}
-                          className="p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition"
-                        >
-                          <MoreVertical className="w-4 h-4" />
-                        </button>
                       </td>
                     </tr>
                   );
