@@ -202,6 +202,7 @@ export const AutoPlayModal: React.FC<AutoPlayModalProps> = ({ onClose }) => {
               onChange={e => setAutoNextSeconds(parseInt(e.target.value))}
               className="bg-slate-800 text-white rounded-lg px-2 py-1 border border-slate-700 outline-none cursor-pointer"
             >
+              <option value="1">1s</option>
               <option value="2">2s</option>
               <option value="3">3s</option>
               <option value="5">5s</option>

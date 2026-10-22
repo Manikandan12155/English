@@ -31,6 +31,18 @@ export default defineConfig({
       }
     })
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          dexie: ['dexie', 'dexie-react-hooks'],
+          icons: ['lucide-react']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 800
+  },
   server: {
     port: 3000,
     open: true

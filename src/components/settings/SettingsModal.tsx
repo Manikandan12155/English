@@ -151,8 +151,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ onClose }) => {
             <span className="font-bold text-slate-700 dark:text-slate-200 block">
               Auto-play Advance Delay
             </span>
-            <div className="grid grid-cols-4 gap-2">
-              {[2, 3, 5, 7].map(sec => (
+            <div className="grid grid-cols-5 gap-1.5">
+              {[1, 2, 3, 5, 7].map(sec => (
                 <button
                   key={sec}
                   onClick={() => setAutoInterval(sec)}
