@@ -201,6 +201,25 @@ export async function explainWordWithGemini(
   }
 
   const cleanKey = apiKey.trim() || DEFAULT_GEMINI_KEY;
+
+  // Fallback when no Gemini API key is configured yet
+  if (!cleanKey) {
+    const isGrammar = partOfSpeech === 'grammar';
+    return {
+      word: cleanWord,
+      simpleMeaning: isGrammar 
+        ? `Essential grammar rule for ${cleanWord} (${cefrLevel}). Focus on correct sentence structure and natural word order.` 
+        : `Essential English ${partOfSpeech} at ${cefrLevel} level. Read the definitions and audio pronunciation above.`,
+      realLifeExample: isGrammar
+        ? `Review the curated examples above to see "${cleanWord}" applied in real-life English.`
+        : `Practice saying "${cleanWord}" in a sentence to build confidence.`,
+      memoryTip: `💡 Connect your Gemini API Key in Settings (⚙️) or Vercel Environment Variables (VITE_GEMINI_API_KEY) for live AI tutor explanations!`,
+      whenToUse: isGrammar
+        ? `Used frequently in modern English grammar across speaking and writing.`
+        : `Frequently used in standard English conversations and writing.`
+    };
+  }
+
   const isGrammar = partOfSpeech === 'grammar';
   const prompt = isGrammar
     ? `You are an exceptionally clear, warm, and friendly English grammar teacher.
@@ -226,7 +245,7 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks:
   "whenToUse": "Brief practical tip on when people usually say or write this word"
 }`;
 
-  const models = ['gemini-3.5-flash', 'gemini-flash-latest', 'gemma-4-26b-a4b-it'];
+  const models = ['gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-1.5-pro'];
   let lastError: any = null;
 
   for (const model of models) {

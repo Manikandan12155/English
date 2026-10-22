@@ -9,10 +9,15 @@ import {
   Database, 
   RotateCcw,
   Sparkles,
-  Info
+  Info,
+  Key,
+  Eye,
+  EyeOff,
+  ExternalLink
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { db, resetToAuthenticOxfordData } from '../../db/database';
+import { getStoredGeminiKey, saveGeminiKey } from '../../services/geminiService';
 
 interface SettingsModalProps {
   onClose: () => void;
@@ -24,9 +29,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ onClose }) => {
   const [dailyGoal, setDailyGoal] = useState<number>(userStats?.dailyGoal || 50);
   const [speechSpeed, setSpeechSpeed] = useState<number>(userStats?.speechSpeed || 1.0);
   const [autoInterval, setAutoInterval] = useState<number>(userStats?.autoPlayInterval || 3);
+  const [geminiKey, setGeminiKey] = useState<string>(getStoredGeminiKey());
+  const [showKey, setShowKey] = useState<boolean>(false);
   const [isResetting, setIsResetting] = useState<boolean>(false);
 
   const handleSave = async () => {
+    saveGeminiKey(geminiKey);
     if (userStats && userStats.id) {
       await db.userStats.update(userStats.id, {
         dailyGoal,
@@ -158,6 +166,50 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ onClose }) => {
                 </button>
               ))}
             </div>
+          </div>
+
+          {/* Google Gemini AI API Key */}
+          <div className="space-y-2 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold">
+                <Sparkles className="w-4 h-4 text-amber-500" />
+                <span>Google Gemini API Key</span>
+              </div>
+              <a 
+                href="https://aistudio.google.com/app/apikey" 
+                target="_blank" 
+                rel="noreferrer"
+                className="text-[10px] text-indigo-600 dark:text-indigo-400 font-semibold hover:underline flex items-center gap-1"
+              >
+                <span>Get Free Key</span>
+                <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+            </div>
+            <p className="text-slate-400 text-xs">
+              Powers instant AI meanings, simple formulas, real-world examples, and mnemonics.
+            </p>
+            <div className="relative">
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+                <Key className="w-3.5 h-3.5" />
+              </div>
+              <input 
+                type={showKey ? 'text' : 'password'}
+                value={geminiKey}
+                onChange={e => setGeminiKey(e.target.value)}
+                placeholder="AIzaSy..."
+                className="w-full pl-9 pr-9 py-2 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-900 dark:text-white font-mono"
+              />
+              <button
+                type="button"
+                onClick={() => setShowKey(!showKey)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              >
+                {showKey ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+              </button>
+            </div>
+            <p className="text-[10px] text-slate-400 italic">
+              Saved privately in your browser's local storage.
+            </p>
           </div>
 
           {/* Reset Starter Data */}
