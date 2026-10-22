@@ -174,15 +174,14 @@ export const WordListView: React.FC<WordListViewProps> = ({
               <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/75 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider text-[11px]">
                 <th className="p-4 w-12 text-center">#</th>
                 <th className="p-4">Word</th>
-                <th className="p-4">Level</th>
-                <th className="p-4">Type</th>
+                <th className="p-4">Level & Type</th>
                 <th className="p-4">Meaning</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
               {paginatedWords.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="p-12 text-center text-slate-400 font-medium">
+                  <td colSpan={4} className="p-12 text-center text-slate-400 font-medium">
                     No vocabulary words match your search or active filters.
                   </td>
                 </tr>
@@ -225,21 +224,23 @@ export const WordListView: React.FC<WordListViewProps> = ({
                         )}
                       </td>
 
-                      {/* Level */}
+                      {/* Level & Type Merged */}
                       <td className="p-4">
-                        <span className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full ${
-                          word.cefrLevel === 'A1' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300' :
-                          word.cefrLevel === 'A2' ? 'bg-blue-100 text-blue-800 dark:bg-blue-950/60 dark:text-blue-300' :
-                          word.cefrLevel === 'B1' ? 'bg-purple-100 text-purple-800 dark:bg-purple-950/60 dark:text-purple-300' :
-                          'bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300'
-                        }`}>
-                          {word.cefrLevel}
-                        </span>
-                      </td>
-
-                      {/* Type / POS */}
-                      <td className="p-4 text-xs text-slate-600 dark:text-slate-400 capitalize">
-                        {word.partOfSpeech}
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${
+                            word.cefrLevel === 'A1' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300' :
+                            word.cefrLevel === 'A2' ? 'bg-blue-100 text-blue-800 dark:bg-blue-950/60 dark:text-blue-300' :
+                            word.cefrLevel === 'B1' ? 'bg-purple-100 text-purple-800 dark:bg-purple-950/60 dark:text-purple-300' :
+                            word.cefrLevel === 'B2' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300' :
+                            word.cefrLevel === 'C1' ? 'bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300' :
+                            'bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-950/60 dark:text-fuchsia-300'
+                          }`}>
+                            {word.cefrLevel}
+                          </span>
+                          <span className="text-xs text-slate-600 dark:text-slate-400 capitalize font-medium">
+                            {word.partOfSpeech}
+                          </span>
+                        </div>
                       </td>
 
                       {/* Meaning */}
