@@ -17,7 +17,7 @@ export const BottomNav: React.FC = () => {
     { id: 'learn', label: 'Learn', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'review', label: 'Review', icon: <RotateCw className="w-5 h-5" /> },
     { id: 'stats', label: 'Stats', icon: <BarChart2 className="w-5 h-5" /> },
-    { id: 'wordlist', label: learningTrack === 'conjunctions' ? 'Conjunctions' : learningTrack === 'prepositions' ? 'Prepositions' : learningTrack === 'phrases' ? 'Phrases' : 'Words', icon: <Layers className="w-5 h-5" /> },
+    { id: 'wordlist', label: learningTrack === 'grammar' ? 'Grammar' : learningTrack === 'conjunctions' ? 'Conjunctions' : learningTrack === 'prepositions' ? 'Prepositions' : learningTrack === 'phrases' ? 'Phrases' : 'Words', icon: <Layers className="w-5 h-5" /> },
   ];
 
   return (

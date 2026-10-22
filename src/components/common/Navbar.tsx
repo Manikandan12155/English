@@ -30,11 +30,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSettings }) => {
             <div className="flex items-center gap-1.5">
               <span className="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight">VocabMaster</span>
               <span className="text-[10px] sm:text-xs font-semibold px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 dark:bg-indigo-900/60 dark:text-indigo-300">
-                {learningTrack === 'conjunctions' ? 'Conjunctions' : learningTrack === 'prepositions' ? 'Prepositions' : learningTrack === 'phrases' ? 'Phrases' : '5000'}
+                {learningTrack === 'grammar' ? 'Grammar' : learningTrack === 'conjunctions' ? 'Conjunctions' : learningTrack === 'prepositions' ? 'Prepositions' : learningTrack === 'phrases' ? 'Phrases' : '5000'}
               </span>
             </div>
             <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 hidden md:block">
-              {learningTrack === 'conjunctions' ? 'English Conjunctions A1–C1' : learningTrack === 'prepositions' ? 'English Prepositions A1–C1' : learningTrack === 'phrases' ? 'Oxford Phrase List A1–C1' : 'Oxford 5000 A1–C2 Master'}
+              {learningTrack === 'grammar' ? 'English Grammar A1–C1' : learningTrack === 'conjunctions' ? 'English Conjunctions A1–C1' : learningTrack === 'prepositions' ? 'English Prepositions A1–C1' : learningTrack === 'phrases' ? 'Oxford Phrase List A1–C1' : 'Oxford 5000 A1–C2 Master'}
             </p>
           </div>
         </div>

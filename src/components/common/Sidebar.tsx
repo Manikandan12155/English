@@ -33,11 +33,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSettings, onOpenHelp }) 
 
   const allMenuItems: MenuItem[] = [
     { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
-    { id: 'learn', label: learningTrack === 'conjunctions' ? 'Learn Conjunctions' : learningTrack === 'prepositions' ? 'Learn Prepositions' : learningTrack === 'phrases' ? 'Learn Phrases' : 'Learn Words', icon: <GraduationCap className="w-5 h-5" /> },
+    { id: 'learn', label: learningTrack === 'grammar' ? 'Learn Grammar' : learningTrack === 'conjunctions' ? 'Learn Conjunctions' : learningTrack === 'prepositions' ? 'Learn Prepositions' : learningTrack === 'phrases' ? 'Learn Phrases' : 'Learn Words', icon: <GraduationCap className="w-5 h-5" /> },
     { id: 'review', label: 'Review', icon: <RotateCw className="w-5 h-5" /> },
     { id: 'quiz', label: 'Quiz Mode', icon: <BrainCircuit className="w-5 h-5" /> },
     { id: 'stats', label: 'Statistics', icon: <BarChart3 className="w-5 h-5" /> },
-    { id: 'wordlist', label: learningTrack === 'conjunctions' ? 'Conjunction List' : learningTrack === 'prepositions' ? 'Preposition List' : learningTrack === 'phrases' ? 'Phrase List' : 'Word List', icon: <Layers className="w-5 h-5" /> },
+    { id: 'wordlist', label: learningTrack === 'grammar' ? 'Grammar List' : learningTrack === 'conjunctions' ? 'Conjunction List' : learningTrack === 'prepositions' ? 'Preposition List' : learningTrack === 'phrases' ? 'Phrase List' : 'Word List', icon: <Layers className="w-5 h-5" /> },
     { id: 'portal', label: 'Switch Track', icon: <ArrowLeftRight className="w-5 h-5" /> },
     { id: 'settings', label: 'Settings', icon: <Settings className="w-5 h-5" />, action: onOpenSettings },
     { id: 'help', label: 'User Guide', icon: <HelpCircle className="w-5 h-5" />, action: onOpenHelp },

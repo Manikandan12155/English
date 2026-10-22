@@ -93,7 +93,7 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
   const [loadingCardLive, setLoadingCardLive] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!activeWord?.word) {
+    if (!activeWord?.word || activeWord.partOfSpeech === 'grammar') {
       setLiveCardData(null);
       setLoadingCardLive(false);
       return;
@@ -287,7 +287,7 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
           <div className="flex items-center gap-1.5 min-w-0">
             <span className="font-extrabold text-slate-800 dark:text-slate-100 truncate">
               {selectedLevel === 'ALL' 
-                ? (learningTrack === 'conjunctions' ? 'All Conjunctions' : learningTrack === 'prepositions' ? 'All Prepositions' : learningTrack === 'phrases' ? 'All Oxford Phrases' : 'All Oxford Words') 
+                ? (learningTrack === 'grammar' ? 'All Grammar Topics' : learningTrack === 'conjunctions' ? 'All Conjunctions' : learningTrack === 'prepositions' ? 'All Prepositions' : learningTrack === 'phrases' ? 'All Oxford Phrases' : 'All Oxford Words') 
                 : `Level ${selectedLevel}`}
             </span>
             {activeWord && (

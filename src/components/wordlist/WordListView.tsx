@@ -154,7 +154,7 @@ export const WordListView: React.FC<WordListViewProps> = ({
               setFilterOptions(prev => ({ ...prev, searchQuery: e.target.value }));
               setCurrentPage(1);
             }}
-            placeholder={learningTrack === 'conjunctions' ? "Search conjunctions, meanings, or examples..." : learningTrack === 'prepositions' ? "Search prepositions, meanings, or examples..." : learningTrack === 'phrases' ? "Search phrases, idioms, or meanings..." : "Search words, meanings, or examples..."}
+            placeholder={learningTrack === 'grammar' ? "Search grammar rules, topics, or formulas..." : learningTrack === 'conjunctions' ? "Search conjunctions, meanings, or examples..." : learningTrack === 'prepositions' ? "Search prepositions, meanings, or examples..." : learningTrack === 'phrases' ? "Search phrases, idioms, or meanings..." : "Search words, meanings, or examples..."}
             className="w-full pl-10 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition text-slate-900 dark:text-white"
           />
         </div>

@@ -270,7 +270,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
             <div className="min-w-0">
               <span className="block font-bold text-slate-900 dark:text-white text-xs truncate">Continue</span>
               <span className="text-[10px] text-slate-400 truncate block">
-                {learningTrack === 'conjunctions' ? 'Study conjunctions' : learningTrack === 'prepositions' ? 'Study prepositions' : learningTrack === 'phrases' ? 'Study phrases' : 'Study words'}
+                {learningTrack === 'grammar' ? 'Study grammar' : learningTrack === 'conjunctions' ? 'Study conjunctions' : learningTrack === 'prepositions' ? 'Study prepositions' : learningTrack === 'phrases' ? 'Study phrases' : 'Study words'}
               </span>
             </div>
           </button>
@@ -286,7 +286,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
             <div className="min-w-0">
               <span className="block font-bold text-slate-900 dark:text-white text-xs truncate">Review</span>
               <span className="text-[10px] text-slate-400 truncate block">
-                {learningTrack === 'conjunctions' ? 'Weak conjunctions' : learningTrack === 'prepositions' ? 'Weak prepositions' : learningTrack === 'phrases' ? 'Weak phrases' : 'Weak words'}
+                {learningTrack === 'grammar' ? 'Weak grammar' : learningTrack === 'conjunctions' ? 'Weak conjunctions' : learningTrack === 'prepositions' ? 'Weak prepositions' : learningTrack === 'phrases' ? 'Weak phrases' : 'Weak words'}
               </span>
             </div>
           </button>

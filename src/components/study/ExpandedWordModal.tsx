@@ -76,6 +76,13 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
     const cachedAI = getCachedAIMeaning(word.word);
     setAiMeaning(cachedAI);
 
+    if (word.partOfSpeech === 'grammar') {
+      setIsLoadingLive(false);
+      setLiveError(null);
+      setLiveData(null);
+      return;
+    }
+
     // 2. Check cached live definitions
     const cachedLive = dictionaryService.getCachedLiveDictionary(word.word);
     if (cachedLive) {
