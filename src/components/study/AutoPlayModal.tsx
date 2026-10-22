@@ -18,8 +18,17 @@ interface AutoPlayModalProps {
 }
 
 export const AutoPlayModal: React.FC<AutoPlayModalProps> = ({ onClose }) => {
-  const { words, userStats } = useApp();
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const { words, userStats, learningTrack } = useApp();
+  const [currentIndex, setCurrentIndex] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      const savedWord = localStorage.getItem(`vocabmaster_last_word_${learningTrack}`);
+      if (savedWord && words.length > 0) {
+        const found = words.findIndex(w => w.word.toLowerCase() === savedWord.toLowerCase());
+        if (found >= 0) return found;
+      }
+    }
+    return 0;
+  });
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(userStats?.speechSpeed || 1.0);
   const [autoNextSeconds, setAutoNextSeconds] = useState<number>(userStats?.autoPlayInterval || 3);
@@ -29,6 +38,12 @@ export const AutoPlayModal: React.FC<AutoPlayModalProps> = ({ onClose }) => {
   const countdownIntervalRef = useRef<any>(null);
 
   const activeWord: VocabularyWord | undefined = words[currentIndex] || words[0];
+
+  useEffect(() => {
+    if (activeWord?.word) {
+      localStorage.setItem(`vocabmaster_last_word_${learningTrack}`, activeWord.word);
+    }
+  }, [activeWord?.word, learningTrack]);
 
   const speakCurrent = () => {
     if (!activeWord) return;

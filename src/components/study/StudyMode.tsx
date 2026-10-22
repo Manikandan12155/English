@@ -40,14 +40,40 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
     userStats, 
     setCurrentScreen,
     filterOptions,
-    learningTrack
+    learningTrack,
+    addToast
   } = useApp();
 
-  const [selectedLevel, setSelectedLevel] = useState<CEFRLevel | 'ALL'>(
-    filterOptions.levels.length === 1 ? filterOptions.levels[0] : 'ALL'
-  );
+  // Load saved level from localStorage or default
+  const [selectedLevel, setSelectedLevel] = useState<CEFRLevel | 'ALL'>(() => {
+    if (typeof window !== 'undefined') {
+      const savedLvl = localStorage.getItem(`vocabmaster_last_level_${learningTrack}`) as CEFRLevel | 'ALL' | null;
+      if (savedLvl && (['ALL', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'].includes(savedLvl))) {
+        return savedLvl;
+      }
+    }
+    return filterOptions.levels.length === 1 ? filterOptions.levels[0] : 'ALL';
+  });
+
   const [selectedStatus, setSelectedStatus] = useState<WordStatus | 'ALL'>('ALL');
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+  // Load saved index from localStorage
+  const [currentIndex, setCurrentIndex] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      const savedLvl = localStorage.getItem(`vocabmaster_last_level_${learningTrack}`) || 'ALL';
+      const savedIdx = localStorage.getItem(`vocabmaster_last_index_${learningTrack}_${savedLvl}`);
+      if (savedIdx !== null) {
+        const parsed = parseInt(savedIdx, 10);
+        if (!isNaN(parsed) && parsed >= 0) return parsed;
+      }
+    }
+    return 0;
+  });
+
+  const [lastStudiedWord, setLastStudiedWord] = useState<string | null>(() => {
+    return typeof window !== 'undefined' ? localStorage.getItem(`vocabmaster_last_word_${learningTrack}`) : null;
+  });
+
   const [hideMeaning, setHideMeaning] = useState<boolean>(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(false);
@@ -74,10 +100,52 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
     return list;
   }, [words, selectedLevel, selectedStatus]);
 
-  // Reset index when level/status filter changes
+  // Automatically align to the saved word once filteredWords load
+  const hasAlignedSavedRef = useRef<boolean>(false);
+  useEffect(() => {
+    if (filteredWords.length > 0 && !hasAlignedSavedRef.current) {
+      hasAlignedSavedRef.current = true;
+      const savedWord = localStorage.getItem(`vocabmaster_last_word_${learningTrack}`);
+      if (savedWord) {
+        const foundIdx = filteredWords.findIndex(w => w.word.toLowerCase() === savedWord.toLowerCase());
+        if (foundIdx >= 0) {
+          setCurrentIndex(foundIdx);
+          return;
+        }
+      }
+      const savedIdx = localStorage.getItem(`vocabmaster_last_index_${learningTrack}_${selectedLevel}`);
+      if (savedIdx !== null) {
+        const parsed = parseInt(savedIdx, 10);
+        if (!isNaN(parsed) && parsed >= 0 && parsed < filteredWords.length) {
+          setCurrentIndex(parsed);
+        }
+      }
+    }
+  }, [filteredWords, learningTrack, selectedLevel]);
+
+  // Automatically save current word and index to localStorage on every change
+  const activeWord: VocabularyWord | undefined = filteredWords[currentIndex] || filteredWords[0];
+  const totalWords = filteredWords.length;
+
+  useEffect(() => {
+    if (activeWord?.word) {
+      localStorage.setItem(`vocabmaster_last_word_${learningTrack}`, activeWord.word);
+      localStorage.setItem(`vocabmaster_last_level_${learningTrack}`, selectedLevel);
+      localStorage.setItem(`vocabmaster_last_index_${learningTrack}_${selectedLevel}`, String(currentIndex));
+      setLastStudiedWord(activeWord.word);
+    }
+  }, [currentIndex, activeWord?.word, learningTrack, selectedLevel]);
+
+  // Restore index for selected level when level changes
   const handleLevelChange = (lvl: CEFRLevel | 'ALL') => {
     setSelectedLevel(lvl);
-    setCurrentIndex(0);
+    const savedIdx = localStorage.getItem(`vocabmaster_last_index_${learningTrack}_${lvl}`);
+    if (savedIdx !== null) {
+      const parsed = parseInt(savedIdx, 10);
+      setCurrentIndex(!isNaN(parsed) && parsed >= 0 ? parsed : 0);
+    } else {
+      setCurrentIndex(0);
+    }
   };
 
   const handleStatusFilterChange = (st: WordStatus | 'ALL') => {
@@ -85,8 +153,26 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
     setCurrentIndex(0);
   };
 
-  const activeWord: VocabularyWord | undefined = filteredWords[currentIndex] || filteredWords[0];
-  const totalWords = filteredWords.length;
+  // Jump directly back to where the user left off
+  const handleResumeLastWord = () => {
+    const savedWord = localStorage.getItem(`vocabmaster_last_word_${learningTrack}`);
+    const savedLvl = localStorage.getItem(`vocabmaster_last_level_${learningTrack}`) as CEFRLevel | 'ALL' | null;
+    if (!savedWord) return;
+
+    if (savedLvl && savedLvl !== selectedLevel) {
+      setSelectedLevel(savedLvl);
+    }
+
+    const currentList = (savedLvl && savedLvl !== 'ALL')
+      ? words.filter(w => w.cefrLevel === savedLvl)
+      : words;
+
+    const targetIdx = currentList.findIndex(w => w.word.toLowerCase() === savedWord.toLowerCase());
+    if (targetIdx >= 0) {
+      setCurrentIndex(targetIdx);
+      if (addToast) addToast(`Resumed from "${savedWord}" (#${targetIdx + 1})`, 'info');
+    }
+  };
 
   // Live Dictionary API for active word
   const [liveCardData, setLiveCardData] = useState<LiveDictionaryResult | null>(null);
@@ -361,7 +447,7 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
       ) : (
         <>
           {/* Top Navigation & Auto Play Controls - Right below Level Bar */}
-          <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm">
+          <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm gap-2">
             <button
               onClick={handlePrevious}
               disabled={currentIndex === 0}
@@ -371,27 +457,42 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
               <span>Prev</span>
             </button>
 
-            {/* Auto Play / Pause Toggle */}
-            <button
-              onClick={() => setIsAutoPlaying(prev => !prev)}
-              className={`flex items-center gap-1.5 px-3.5 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm transition shadow-sm ${
-                isAutoPlaying
-                  ? 'bg-amber-500 text-white'
-                  : 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100'
-              }`}
-            >
-              {isAutoPlaying ? (
-                <>
-                  <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
-                  <span>Pause</span>
-                </>
-              ) : (
-                <>
-                  <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
-                  <span>Auto Play</span>
-                </>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              {/* Resume / Continue from last studied word button */}
+              {lastStudiedWord && lastStudiedWord.toLowerCase() !== activeWord?.word?.toLowerCase() && (
+                <button
+                  onClick={handleResumeLastWord}
+                  title={`Jump back to where you left off: ${lastStudiedWord}`}
+                  className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200/80 dark:border-purple-800 hover:bg-purple-100 dark:hover:bg-purple-900 transition font-bold text-[11px] sm:text-xs shadow-xs"
+                >
+                  <RotateCcw className="w-3.5 h-3.5 text-purple-500 shrink-0" />
+                  <span className="hidden xs:inline">Resume:</span>
+                  <span className="truncate max-w-[80px] sm:max-w-[120px] underline">{lastStudiedWord}</span>
+                </button>
               )}
-            </button>
+
+              {/* Auto Play / Pause Toggle */}
+              <button
+                onClick={() => setIsAutoPlaying(prev => !prev)}
+                className={`flex items-center gap-1.5 px-3.5 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm transition shadow-sm ${
+                  isAutoPlaying
+                    ? 'bg-amber-500 text-white'
+                    : 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100'
+                }`}
+              >
+                {isAutoPlaying ? (
+                  <>
+                    <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
+                    <span>Pause</span>
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
+                    <span>Auto Play</span>
+                  </>
+                )}
+              </button>
+            </div>
 
             <button
               onClick={handleNext}
