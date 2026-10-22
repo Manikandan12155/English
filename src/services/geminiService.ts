@@ -1,6 +1,9 @@
 import { VocabularyWord, CEFRLevel, PartOfSpeech } from '../types/vocabulary';
 
-export const DEFAULT_GEMINI_KEY = (import.meta as any).env?.GEMINI_API_KEY || '';
+export const DEFAULT_GEMINI_KEY = 
+  (import.meta as any).env?.GEMINI_API_KEY || 
+  (import.meta as any).env?.VITE_GEMINI_API_KEY || 
+  '';
 
 export function getStoredGeminiKey(): string {
   if (typeof window !== 'undefined') {
