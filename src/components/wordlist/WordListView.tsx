@@ -1,36 +1,28 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Search, 
-  SlidersHorizontal, 
-  Download, 
-  Plus, 
   Volume2, 
   MoreVertical, 
   Check, 
   Trash2, 
   CheckCircle2, 
   HelpCircle, 
-  XCircle,
-  FileSpreadsheet
+  XCircle
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { VocabularyWord, WordStatus } from '../../types/vocabulary';
-import { exportWordsToCSV } from '../../services/csvService';
 import { speechService } from '../../services/speechService';
 import { db } from '../../db/database';
 
 interface WordListViewProps {
-  onOpenFilter: () => void;
-  onOpenImport: () => void;
+  onOpenFilter?: () => void;
+  onOpenImport?: () => void;
   onOpenDetails: (word: VocabularyWord) => void;
-  onAddNewWord: () => void;
+  onAddNewWord?: () => void;
 }
 
 export const WordListView: React.FC<WordListViewProps> = ({
-  onOpenFilter,
-  onOpenImport,
-  onOpenDetails,
-  onAddNewWord
+  onOpenDetails
 }) => {
   const { 
     words, 
@@ -141,11 +133,11 @@ export const WordListView: React.FC<WordListViewProps> = ({
   return (
     <div className="max-w-6xl mx-auto space-y-4 pb-20 lg:pb-8 pt-1">
       
-      {/* Top Action Toolbar (Panel 9) */}
-      <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
+      {/* Top Search Toolbar */}
+      <div className="bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
         
         {/* Search input */}
-        <div className="relative flex-1">
+        <div className="relative w-full">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
@@ -155,48 +147,8 @@ export const WordListView: React.FC<WordListViewProps> = ({
               setCurrentPage(1);
             }}
             placeholder={learningTrack === 'grammar' ? "Search grammar rules, topics, or formulas..." : learningTrack === 'conjunctions' ? "Search conjunctions, meanings, or examples..." : learningTrack === 'prepositions' ? "Search prepositions, meanings, or examples..." : learningTrack === 'phrases' ? "Search phrases, idioms, or meanings..." : "Search words, meanings, or examples..."}
-            className="w-full pl-10 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition text-slate-900 dark:text-white"
+            className="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition text-slate-900 dark:text-white"
           />
-        </div>
-
-        {/* Action Buttons: Filter, Import, Export, Add */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
-          
-          <button
-            onClick={onOpenFilter}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs transition shrink-0"
-          >
-            <SlidersHorizontal className="w-3.5 h-3.5" />
-            <span>Filters</span>
-            {(filterOptions.levels.length > 0 || filterOptions.statuses.length > 0 || filterOptions.partsOfSpeech.length > 0) && (
-              <span className="w-2 h-2 rounded-full bg-indigo-600 ml-1" />
-            )}
-          </button>
-
-          <button
-            onClick={onOpenImport}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs transition shrink-0"
-          >
-            <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600" />
-            <span>Import</span>
-          </button>
-
-          <button
-            onClick={() => exportWordsToCSV(words)}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs transition shrink-0"
-          >
-            <Download className="w-3.5 h-3.5 text-indigo-600" />
-            <span>Export</span>
-          </button>
-
-          <button
-            onClick={onAddNewWord}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md shadow-indigo-600/20 transition shrink-0"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Add Word</span>
-          </button>
-
         </div>
       </div>
 
