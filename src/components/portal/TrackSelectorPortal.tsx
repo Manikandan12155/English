@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, MessageSquareQuote, Compass, Link2, BookA, Sparkles, ArrowRight, CheckCircle2, Award, Navigation, BrainCircuit } from 'lucide-react';
+import { BookOpen, MessageSquareQuote, Compass, Link2, BookA, Sparkles, ArrowRight, CheckCircle2, Award, Navigation, BrainCircuit, Gamepad2, Zap } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { LearningTrack } from '../../types/vocabulary';
 
@@ -44,8 +44,8 @@ export const TrackSelectorPortal: React.FC<TrackSelectorPortalProps> = ({ onSele
           </p>
         </div>
 
-        {/* 5 Track Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 text-left">
+        {/* 6 Track & Game Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5 sm:gap-4 text-left">
           
           {/* Card 1: Vocabulary Track */}
           <div 
@@ -267,11 +267,51 @@ export const TrackSelectorPortal: React.FC<TrackSelectorPortalProps> = ({ onSele
             </div>
           </div>
 
+          {/* Card 6: AI Games */}
+          <div 
+            onClick={() => setCurrentScreen('game')}
+            className="group relative p-5 rounded-3xl bg-slate-900/70 hover:bg-slate-800/80 border transition-all duration-300 cursor-pointer shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 backdrop-blur-xl flex flex-col justify-between border-slate-800 hover:border-cyan-500/50"
+          >
+            <div>
+              <div className="flex items-start justify-between mb-4">
+                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform">
+                  <Gamepad2 className="w-5 h-5" />
+                </div>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                  AI Arena
+                </span>
+              </div>
+
+              <h2 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
+                AI Games
+              </h2>
+              <p className="text-slate-400 text-xs mt-1.5 leading-relaxed min-h-[42px]">
+                Mystery Word, Synonym Duels & Grammar Detective challenges with AI.
+              </p>
+
+              <div className="mt-4 pt-3 border-t border-slate-800/80 flex flex-wrap gap-1.5 text-[10px] text-slate-300">
+                <span className="flex items-center gap-1 bg-slate-800/60 px-2 py-0.5 rounded-md">
+                  <Zap className="w-3 h-3 text-cyan-400" /> 3 Modes
+                </span>
+                <span className="flex items-center gap-1 bg-slate-800/60 px-2 py-0.5 rounded-md">
+                  <Sparkles className="w-3 h-3 text-cyan-400" /> AI Powered
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-4 flex items-center justify-between text-cyan-400 font-bold text-xs group-hover:translate-x-0.5 transition-transform">
+              <span>Play Games</span>
+              <div className="w-6 h-6 rounded-full bg-cyan-500/20 flex items-center justify-center group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                <ArrowRight className="w-3.5 h-3.5" />
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* Footer info */}
         <p className="text-xs text-slate-500">
-          Oxford 5000™ • Oxford Phrase List™ • Prepositions A1–C1 • Conjunctions A1–C1 • Grammar A1–C1 • Spaced Repetition • Offline PWA
+          Oxford 5000™ • Oxford Phrase List™ • Prepositions A1–C1 • Conjunctions A1–C1 • Grammar A1–C1 • AI Games • Spaced Repetition • Offline PWA
         </p>
 
       </div>

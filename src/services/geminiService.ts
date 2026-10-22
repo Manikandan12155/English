@@ -140,6 +140,8 @@ export interface AIMeaningResult {
   realLifeExample: string;
   memoryTip: string;
   whenToUse?: string;
+  synonyms?: string[];
+  antonyms?: string[];
 }
 
 const aiMeaningCache = new Map<string, AIMeaningResult>();
@@ -245,7 +247,9 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks:
   "simpleMeaning": "Crystal-clear, easy-to-understand 1-sentence explanation in simple English",
   "realLifeExample": "A relatable, natural everyday sentence",
   "memoryTip": "A clever trick, association, or mnemonic to remember this word easily",
-  "whenToUse": "Brief practical tip on when people usually say or write this word"
+  "whenToUse": "Brief practical tip on when people usually say or write this word",
+  "synonyms": ["common synonym 1", "synonym 2", "synonym 3"],
+  "antonyms": ["direct antonym/opposite 1", "opposite 2"]
 }`;
 
   const models = ['gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-1.5-pro'];
@@ -274,7 +278,9 @@ Return ONLY a valid JSON object with NO markdown formatting, NO backticks:
           simpleMeaning: parsed.simpleMeaning || `Meaning of ${cleanWord}`,
           realLifeExample: parsed.realLifeExample || `Example sentence with ${cleanWord}`,
           memoryTip: parsed.memoryTip || `Remember ${cleanWord} in daily practice`,
-          whenToUse: parsed.whenToUse || 'Used in everyday conversational English'
+          whenToUse: parsed.whenToUse || 'Used in everyday conversational English',
+          synonyms: Array.isArray(parsed.synonyms) ? parsed.synonyms.filter(Boolean).slice(0, 5) : [],
+          antonyms: Array.isArray(parsed.antonyms) ? parsed.antonyms.filter(Boolean).slice(0, 5) : []
         };
 
         // Save to in-memory cache and persistent localStorage

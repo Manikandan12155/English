@@ -30,6 +30,8 @@ export interface VocabularyWord {
   exampleSentences?: string[]; // multiple examples
   simpleMeaning?: string;
   relatedWords?: string[];
+  synonyms?: string[];
+  antonyms?: string[];
   notes?: string;
   status: WordStatus;
   isFavorite?: boolean;
@@ -64,7 +66,8 @@ export type ViewScreen =
   | 'review' 
   | 'quiz' 
   | 'stats' 
-  | 'settings';
+  | 'settings'
+  | 'game';
 
 export interface FilterOptions {
   searchQuery: string;

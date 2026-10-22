@@ -18,6 +18,7 @@ import { AutoPlayModal } from './components/study/AutoPlayModal';
 import { SettingsModal } from './components/settings/SettingsModal';
 import { OnboardingModal } from './components/onboarding/OnboardingModal';
 import { TrackSelectorPortal } from './components/portal/TrackSelectorPortal';
+import { AIGameView } from './components/game/AIGameView';
 import { VocabularyWord, WordStatus } from './types/vocabulary';
 
 export const AppContent: React.FC = () => {
@@ -131,6 +132,10 @@ export const AppContent: React.FC = () => {
             <StatisticsView
               onOpenDailyGoalModal={() => setShowSettingsModal(true)}
             />
+          )}
+
+          {currentScreen === 'game' && (
+            <AIGameView onBack={() => setCurrentScreen('portal')} />
           )}
           </div>
         </main>

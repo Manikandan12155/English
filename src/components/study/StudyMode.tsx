@@ -17,7 +17,12 @@ import {
   HelpCircle,
   XCircle,
   Info,
-  Globe
+  Globe,
+  Shuffle,
+  ArrowUpDown,
+  ArrowDownAZ,
+  ArrowUpZA,
+  Minimize2
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { VocabularyWord, WordStatus, CEFRLevel } from '../../types/vocabulary';
@@ -26,6 +31,21 @@ import { dictionaryService, LiveDictionaryResult } from '../../services/dictiona
 import { explainWordWithGemini, getCachedAIMeaning, AIMeaningResult } from '../../services/geminiService';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import confetti from 'canvas-confetti';
+
+const FULLSCREEN_GRADIENTS = [
+  'from-indigo-600 via-purple-700 to-pink-600',
+  'from-blue-600 via-indigo-700 to-violet-900',
+  'from-emerald-600 via-teal-700 to-cyan-800',
+  'from-rose-600 via-pink-700 to-purple-800',
+  'from-violet-700 via-purple-900 to-slate-950',
+  'from-teal-600 via-emerald-700 to-blue-800',
+  'from-amber-600 via-orange-700 to-rose-800',
+  'from-fuchsia-600 via-rose-700 to-indigo-800',
+  'from-cyan-600 via-blue-700 to-purple-800',
+  'from-slate-900 via-indigo-950 to-purple-950',
+  'from-violet-600 via-pink-600 to-rose-600',
+  'from-sky-600 via-teal-700 to-emerald-800'
+];
 
 interface StudyModeProps {
   onOpenDetails: (word: VocabularyWord) => void;
@@ -79,6 +99,12 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
   const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(false);
   const autoPlayTimerRef = useRef<any>(null);
 
+  // Shuffle, Sort and Fullscreen states
+  const [isShuffled, setIsShuffled] = useState<boolean>(false);
+  const [shuffleSeed, setShuffleSeed] = useState<number>(0);
+  const [sortOrder, setSortOrder] = useState<'default' | 'az' | 'za'>('default');
+  const [isFullscreenCard, setIsFullscreenCard] = useState<boolean>(false);
+
   // Compute level counts
   const levelCounts = React.useMemo(() => {
     const counts: Record<string, number> = { ALL: words.length };
@@ -88,7 +114,7 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
     return counts;
   }, [words]);
 
-  // Filter words by selected level & status
+  // Filter words by selected level & status, with Shuffle and Alphabetical Sort
   const filteredWords = React.useMemo(() => {
     let list = words;
     if (selectedLevel !== 'ALL') {
@@ -97,8 +123,25 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
     if (selectedStatus !== 'ALL') {
       list = list.filter(w => w.status === selectedStatus);
     }
+
+    if (isShuffled) {
+      const copy = [...list];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    if (sortOrder === 'az') {
+      return [...list].sort((a, b) => a.word.localeCompare(b.word));
+    }
+    if (sortOrder === 'za') {
+      return [...list].sort((a, b) => b.word.localeCompare(a.word));
+    }
+
     return list;
-  }, [words, selectedLevel, selectedStatus]);
+  }, [words, selectedLevel, selectedStatus, isShuffled, shuffleSeed, sortOrder]);
 
   // Automatically align to the saved word once filteredWords load
   const hasAlignedSavedRef = useRef<boolean>(false);
@@ -242,6 +285,34 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
       setActiveDefIndex(prev => (prev + 1) % liveCardData.definitions.length);
     }
   };
+
+  // Synonyms and Antonyms extraction against active word
+  const synonymsList = React.useMemo(() => {
+    const set = new Set<string>();
+    if (activeWord?.synonyms) activeWord.synonyms.forEach(s => set.add(s));
+    if (liveCardData?.synonyms) liveCardData.synonyms.forEach(s => set.add(s));
+    if (aiMeaning?.synonyms) aiMeaning.synonyms.forEach(s => set.add(s));
+    return Array.from(set).filter(s => s && s.toLowerCase() !== activeWord?.word?.toLowerCase()).slice(0, 6);
+  }, [activeWord, liveCardData, aiMeaning]);
+
+  const antonymsList = React.useMemo(() => {
+    const set = new Set<string>();
+    if (activeWord?.antonyms) activeWord.antonyms.forEach(a => set.add(a));
+    if (liveCardData?.antonyms) liveCardData.antonyms.forEach(a => set.add(a));
+    if (aiMeaning?.antonyms) aiMeaning.antonyms.forEach(a => set.add(a));
+    return Array.from(set).filter(a => a && a.toLowerCase() !== activeWord?.word?.toLowerCase()).slice(0, 6);
+  }, [activeWord, liveCardData, aiMeaning]);
+
+  // Close Fullscreen on ESC key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isFullscreenCard) {
+        setIsFullscreenCard(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFullscreenCard]);
 
   const handleToggleAIMeaning = async () => {
     if (!activeWord) return;
@@ -517,7 +588,53 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
             </span>
           </div>
 
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            {/* 1. Shuffle Option with Icon */}
+            <button
+              onClick={() => {
+                setIsShuffled(prev => !prev);
+                if (!isShuffled) setSortOrder('default');
+                setShuffleSeed(Date.now());
+                setCurrentIndex(0);
+                if (addToast) addToast(!isShuffled ? '🔀 Words Shuffled randomly' : 'Shuffle turned off', 'info');
+              }}
+              title={isShuffled ? "Shuffle active (Click to turn off)" : "Shuffle words randomly"}
+              className={`p-1.5 sm:p-2 rounded-xl transition ${
+                isShuffled
+                  ? 'bg-purple-100 text-purple-700 dark:bg-purple-950/80 dark:text-purple-300 ring-2 ring-purple-400 font-bold'
+                  : 'text-slate-400 hover:text-purple-600 hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
+            >
+              <Shuffle className={`w-4 h-4 sm:w-5 sm:h-5 ${isShuffled ? 'stroke-[2.5]' : ''}`} />
+            </button>
+
+            {/* 2. Alphabetical Sort Option with Icon */}
+            <button
+              onClick={() => {
+                setIsShuffled(false);
+                const nextSort = sortOrder === 'default' ? 'az' : sortOrder === 'az' ? 'za' : 'default';
+                setSortOrder(nextSort);
+                setCurrentIndex(0);
+                if (addToast) {
+                  addToast(nextSort === 'az' ? '🔤 Sorted A to Z' : nextSort === 'za' ? '🔤 Sorted Z to A' : 'Default word order', 'info');
+                }
+              }}
+              title={`Alphabetical Sort: ${sortOrder === 'default' ? 'Default (Click for A-Z)' : sortOrder === 'az' ? 'A to Z (Click for Z-A)' : 'Z to A (Click for Default)'}`}
+              className={`p-1.5 sm:p-2 rounded-xl transition ${
+                sortOrder !== 'default'
+                  ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-950/80 dark:text-indigo-300 ring-2 ring-indigo-400 font-bold'
+                  : 'text-slate-400 hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
+            >
+              {sortOrder === 'az' ? (
+                <ArrowDownAZ className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
+              ) : sortOrder === 'za' ? (
+                <ArrowUpZA className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
+              ) : (
+                <ArrowUpDown className="w-4 h-4 sm:w-5 sm:h-5" />
+              )}
+            </button>
+
             <button
               onClick={() => setHideMeaning(prev => !prev)}
               title={hideMeaning ? "Reveal Meaning" : "Hide Meaning for Recall"}
@@ -535,10 +652,12 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
             >
               <Star className={`w-4 h-4 sm:w-5 sm:h-5 ${activeWord.isFavorite ? 'fill-current' : ''}`} />
             </button>
+            
+            {/* 3. Fullscreen Expand button */}
             <button
-              onClick={() => onOpenDetails(activeWord)}
-              title="Expand Details"
-              className="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              onClick={() => setIsFullscreenCard(true)}
+              title="Expand Full Screen Mode (Word card + Random Colors)"
+              className="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
             >
               <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
@@ -702,6 +821,57 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
             )}
           </div>
 
+          {/* 4. Synonyms & Antonyms against each word */}
+          {(synonymsList.length > 0 || antonymsList.length > 0) && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 animate-fade-in">
+              {synonymsList.length > 0 && (
+                <div className="p-3 rounded-xl sm:rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-800/50 space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
+                      Synonyms (Same Meaning)
+                    </span>
+                    <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">
+                      {synonymsList.length}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {synonymsList.map(syn => (
+                      <span
+                        key={syn}
+                        className="px-2.5 py-0.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/60 text-emerald-900 dark:text-emerald-100 font-bold text-xs border border-emerald-300/70 dark:border-emerald-700 shadow-xs"
+                      >
+                        {syn}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {antonymsList.length > 0 && (
+                <div className="p-3 rounded-xl sm:rounded-2xl bg-rose-50/70 dark:bg-rose-950/30 border border-rose-200/70 dark:border-rose-800/50 space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-rose-800 dark:text-rose-300">
+                      Antonyms (Opposite Meaning)
+                    </span>
+                    <span className="text-[10px] text-rose-600 dark:text-rose-400 font-bold">
+                      {antonymsList.length}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {antonymsList.map(ant => (
+                      <span
+                        key={ant}
+                        className="px-2.5 py-0.5 rounded-lg bg-rose-100 dark:bg-rose-900/60 text-rose-900 dark:text-rose-100 font-bold text-xs border border-rose-300/70 dark:border-rose-700 shadow-xs"
+                      >
+                        {ant}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
         </div>
 
         {/* Keyboard shortcut hint banner (hidden on touch devices) */}
@@ -763,6 +933,165 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
       </div>
       </>
     )}
+
+      {/* 3. Full Screen Mode Modal (Text Name, Card only, Random background colors) */}
+      {isFullscreenCard && activeWord && (
+        <div className={`fixed inset-0 z-50 flex flex-col justify-between p-4 sm:p-8 md:p-12 bg-gradient-to-br ${
+          FULLSCREEN_GRADIENTS[Math.abs(((activeWord.word.charCodeAt(0) || 0) * 7 + currentIndex) % FULLSCREEN_GRADIENTS.length)]
+        } text-white animate-fade-in overflow-y-auto`}>
+          {/* Header Bar */}
+          <div className="flex items-center justify-between w-full max-w-4xl mx-auto">
+            <div className="flex items-center gap-2">
+              <span className="px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-md font-black text-xs sm:text-sm border border-white/30 shadow-sm">
+                {activeWord.cefrLevel}
+              </span>
+              <span className="px-3 py-1 rounded-full bg-white/15 backdrop-blur-md font-semibold text-xs capitalize border border-white/20">
+                {activeWord.partOfSpeech}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-xs sm:text-sm font-bold bg-white/20 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/30 tabular-nums">
+                {currentIndex + 1} / {totalWords}
+              </span>
+              <button
+                onClick={() => setIsFullscreenCard(false)}
+                className="p-2 sm:p-2.5 rounded-2xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white transition active:scale-95 border border-white/30 shadow-lg"
+                title="Exit Full Screen (Esc)"
+              >
+                <Minimize2 className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+            </div>
+          </div>
+
+          {/* Center: Big Text Word Name & Card */}
+          <div className="w-full max-w-3xl mx-auto my-auto py-4 sm:py-8 space-y-6 text-center">
+            <div>
+              <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight drop-shadow-2xl text-white">
+                {activeWord.word}
+              </h1>
+              <div className="flex items-center justify-center gap-3 mt-3">
+                <span className="font-mono text-lg sm:text-xl text-white/80">
+                  {activeWord.pronunciation || '/.../'}
+                </span>
+                <button
+                  onClick={speakCurrentWord}
+                  className="p-2.5 sm:p-3 rounded-full bg-white/25 hover:bg-white/35 backdrop-blur-md text-white transition active:scale-95 border border-white/30 shadow-lg"
+                  title="Listen pronunciation"
+                >
+                  <Volume2 className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* Clean Glassmorphic Card */}
+            <div className="bg-black/30 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/20 shadow-2xl text-left space-y-4">
+              <div>
+                <span className="text-[11px] font-black uppercase tracking-wider text-white/60 block mb-1">
+                  Meaning
+                </span>
+                <p className="text-lg sm:text-2xl font-bold text-white leading-relaxed">
+                  {liveCardData?.definitions?.[0]?.definition || activeWord.meaning}
+                </p>
+              </div>
+
+              {/* Synonyms & Antonyms in Fullscreen Card */}
+              {(synonymsList.length > 0 || antonymsList.length > 0) && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-white/15">
+                  {synonymsList.length > 0 && (
+                    <div className="space-y-1.5">
+                      <span className="text-[11px] font-black uppercase tracking-wider text-emerald-300 block">
+                        Synonyms
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {synonymsList.map(s => (
+                          <span key={s} className="px-2.5 py-1 rounded-xl bg-emerald-500/30 backdrop-blur-md border border-emerald-400/40 text-white font-bold text-xs sm:text-sm">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {antonymsList.length > 0 && (
+                    <div className="space-y-1.5">
+                      <span className="text-[11px] font-black uppercase tracking-wider text-rose-300 block">
+                        Antonyms
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {antonymsList.map(a => (
+                          <span key={a} className="px-2.5 py-1 rounded-xl bg-rose-500/30 backdrop-blur-md border border-rose-400/40 text-white font-bold text-xs sm:text-sm">
+                            {a}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* AI Explanation in Fullscreen if loaded */}
+              {aiMeaning && (
+                <div className="p-3.5 rounded-2xl bg-amber-500/20 backdrop-blur-md border border-amber-300/30 text-amber-100 space-y-1">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-amber-300">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Gemini AI Tutor</span>
+                  </div>
+                  <p className="text-sm sm:text-base font-semibold text-white">
+                    {aiMeaning.simpleMeaning}
+                  </p>
+                  {aiMeaning.realLifeExample && (
+                    <p className="text-xs italic text-amber-200/90 pt-1">
+                      "{aiMeaning.realLifeExample}"
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Bottom Actions Bar */}
+          <div className="w-full max-w-2xl mx-auto flex items-center justify-between gap-3 pt-4">
+            <button
+              onClick={handlePrevious}
+              disabled={currentIndex === 0}
+              className="flex items-center gap-1.5 px-4 sm:px-6 py-3 rounded-2xl bg-white/20 hover:bg-white/30 backdrop-blur-md disabled:opacity-30 disabled:pointer-events-none transition font-bold text-sm sm:text-base border border-white/25 active:scale-95"
+            >
+              <ChevronLeft className="w-5 h-5" />
+              <span>Prev</span>
+            </button>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => handleStatusSelect('known')}
+                className="px-3 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs sm:text-sm shadow-lg shadow-emerald-900/40 active:scale-95 transition"
+              >
+                Known
+              </button>
+              <button
+                onClick={() => handleStatusSelect('understand')}
+                className="px-3 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-black text-xs sm:text-sm shadow-lg shadow-amber-900/40 active:scale-95 transition"
+              >
+                Understand
+              </button>
+              <button
+                onClick={() => handleStatusSelect('new')}
+                className="px-3 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white font-black text-xs sm:text-sm shadow-lg shadow-rose-900/40 active:scale-95 transition"
+              >
+                New
+              </button>
+            </div>
+
+            <button
+              onClick={handleNext}
+              className="flex items-center gap-1.5 px-4 sm:px-6 py-3 rounded-2xl bg-white/20 hover:bg-white/30 backdrop-blur-md transition font-bold text-sm sm:text-base border border-white/25 active:scale-95"
+            >
+              <span>Next</span>
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   );

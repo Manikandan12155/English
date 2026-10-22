@@ -10,7 +10,8 @@ import {
   Search,
   BrainCircuit,
   X,
-  ArrowLeftRight
+  ArrowLeftRight,
+  Gamepad2
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { ViewScreen } from '../../types/vocabulary';
@@ -35,6 +36,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSettings, onOpenHelp }) 
     { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
     { id: 'learn', label: learningTrack === 'grammar' ? 'Learn Grammar' : learningTrack === 'conjunctions' ? 'Learn Conjunctions' : learningTrack === 'prepositions' ? 'Learn Prepositions' : learningTrack === 'phrases' ? 'Learn Phrases' : 'Learn Words', icon: <GraduationCap className="w-5 h-5" /> },
     { id: 'review', label: 'Review', icon: <RotateCw className="w-5 h-5" /> },
+    { id: 'game', label: 'AI Games', icon: <Gamepad2 className="w-5 h-5 text-amber-400" /> },
     { id: 'quiz', label: 'Quiz Mode', icon: <BrainCircuit className="w-5 h-5" /> },
     { id: 'stats', label: 'Statistics', icon: <BarChart3 className="w-5 h-5" /> },
     { id: 'wordlist', label: learningTrack === 'grammar' ? 'Grammar List' : learningTrack === 'conjunctions' ? 'Conjunction List' : learningTrack === 'prepositions' ? 'Preposition List' : learningTrack === 'phrases' ? 'Phrase List' : 'Word List', icon: <Layers className="w-5 h-5" /> },
@@ -43,7 +45,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onOpenSettings, onOpenHelp }) 
     { id: 'help', label: 'User Guide', icon: <HelpCircle className="w-5 h-5" />, action: onOpenHelp },
   ];
 
-  const primaryItems = allMenuItems.slice(0, 6);
+  const primaryItems = allMenuItems.slice(0, 7);
 
   const displayedItems = menuSearch.trim()
     ? allMenuItems.filter(item => item.label.toLowerCase().includes(menuSearch.toLowerCase().trim()))
