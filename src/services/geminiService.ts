@@ -1,6 +1,6 @@
 import { VocabularyWord, CEFRLevel, PartOfSpeech } from '../types/vocabulary';
 
-export const DEFAULT_GEMINI_KEY = (import.meta as any).env?.VITE_GEMINI_API_KEY || '';
+export const DEFAULT_GEMINI_KEY = (import.meta as any).env?.GEMINI_API_KEY || '';
 
 export function getStoredGeminiKey(): string {
   if (typeof window !== 'undefined') {
@@ -21,7 +21,7 @@ export async function extractVocabularyWithGemini(
   apiKey: string = getStoredGeminiKey()
 ): Promise<Omit<VocabularyWord, 'id'>[]> {
   const cleanKey = apiKey.trim() || DEFAULT_GEMINI_KEY;
-  
+
   const systemPrompt = `You are an expert lexicographer and English vocabulary teacher.
 Analyze the provided text excerpt from a PDF/document and extract important English vocabulary words.
 For each word, return a structured JSON array of objects with:
@@ -68,7 +68,7 @@ Return ONLY valid JSON array with NO markdown formatting, NO backticks. Example:
 
   const data = await response.json();
   const rawContent = data.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
-  
+
   // Clean JSON string (remove markdown code blocks if any)
   const cleaned = rawContent
     .replace(/```json/gi, '')
@@ -189,7 +189,7 @@ export async function explainWordWithGemini(
   forceRefresh: boolean = false
 ): Promise<AIMeaningResult> {
   const cleanWord = word.trim().toLowerCase();
-  
+
   if (!forceRefresh) {
     // 1. Check persistent cache first (instant return, zero network hit)
     const cached = getCachedAIMeaning(cleanWord);
@@ -207,13 +207,13 @@ export async function explainWordWithGemini(
     const isGrammar = partOfSpeech === 'grammar';
     return {
       word: cleanWord,
-      simpleMeaning: isGrammar 
-        ? `Essential grammar rule for ${cleanWord} (${cefrLevel}). Focus on correct sentence structure and natural word order.` 
+      simpleMeaning: isGrammar
+        ? `Essential grammar rule for ${cleanWord} (${cefrLevel}). Focus on correct sentence structure and natural word order.`
         : `Essential English ${partOfSpeech} at ${cefrLevel} level. Read the definitions and audio pronunciation above.`,
       realLifeExample: isGrammar
         ? `Review the curated examples above to see "${cleanWord}" applied in real-life English.`
         : `Practice saying "${cleanWord}" in a sentence to build confidence.`,
-      memoryTip: `💡 Connect your Gemini API Key in Settings (⚙️) or Vercel Environment Variables (VITE_GEMINI_API_KEY) for live AI tutor explanations!`,
+      memoryTip: `💡 Connect your Gemini API Key in Settings (⚙️) or Vercel Environment Variables (GEMINI_API_KEY) for live AI tutor explanations!`,
       whenToUse: isGrammar
         ? `Used frequently in modern English grammar across speaking and writing.`
         : `Frequently used in standard English conversations and writing.`
