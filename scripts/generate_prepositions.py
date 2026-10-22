@@ -1,0 +1,165 @@
+import json
+
+prepositions_master = [
+    # --- A1 LEVEL (Fundamental spatial, temporal, and directional prepositions) ---
+    {"word": "in", "cefr": "A1", "meaning": "Inside a container, place, period of time, or state", "example": "She is sitting in the library."},
+    {"word": "on", "cefr": "A1", "meaning": "Physically supported by a surface, or indicating a specific day/date", "example": "The keys are on the kitchen table."},
+    {"word": "at", "cefr": "A1", "meaning": "Indicating a particular point, location, or exact time", "example": "Let's meet at the train station at 6 PM."},
+    {"word": "to", "cefr": "A1", "meaning": "In the direction of or reaching a destination", "example": "He walked to the store."},
+    {"word": "for", "cefr": "A1", "meaning": "Indicating purpose, recipient, or duration of time", "example": "I bought this present for you."},
+    {"word": "with", "cefr": "A1", "meaning": "Accompanied by someone, possessing something, or using a tool", "example": "She came with her best friend."},
+    {"word": "from", "cefr": "A1", "meaning": "Indicating the point of origin, starting place, or source", "example": "We flew from London to Paris."},
+    {"word": "of", "cefr": "A1", "meaning": "Belonging to, relating to, or made of something", "example": "She is the director of the school."},
+    {"word": "by", "cefr": "A1", "meaning": "Beside or near, or indicating the agent or means", "example": "He sat by the fireplace reading."},
+    {"word": "about", "cefr": "A1", "meaning": "On the subject of, concerning, or approximately", "example": "Tell me about your new project."},
+    {"word": "after", "cefr": "A1", "meaning": "Following in time or sequential order", "example": "We can get coffee after class."},
+    {"word": "before", "cefr": "A1", "meaning": "Preceding in time, or directly in front of", "example": "Check the schedule before leaving."},
+    {"word": "under", "cefr": "A1", "meaning": "Situated directly below or beneath something", "example": "The dog is sleeping under the desk."},
+    {"word": "between", "cefr": "A1", "meaning": "In the space separating two points, items, or people", "example": "The pharmacy is between two shops."},
+    {"word": "behind", "cefr": "A1", "meaning": "At or to the back of someone or something", "example": "The parking lot is behind the building."},
+    {"word": "next to", "cefr": "A1", "meaning": "Directly alongside or beside someone/something", "example": "Come sit next to me."},
+    {"word": "near", "cefr": "A1", "meaning": "Close to; at a short distance from", "example": "They live near the city center."},
+    {"word": "up", "cefr": "A1", "meaning": "Moving to a higher place, position, or along a path", "example": "She ran up the wooden stairs."},
+    {"word": "down", "cefr": "A1", "meaning": "Moving to a lower position or along a slope", "example": "The ball rolled down the hill."},
+    {"word": "into", "cefr": "A1", "meaning": "Movement toward the inside of an enclosure or space", "example": "He stepped into the elevator."},
+    {"word": "out of", "cefr": "A1", "meaning": "Moving from the interior to the exterior", "example": "Take the books out of the backpack."},
+    {"word": "over", "cefr": "A1", "meaning": "Directly higher than; across and above", "example": "A rainbow appeared over the lake."},
+    {"word": "like", "cefr": "A1", "meaning": "Similar to; resembling someone or something", "example": "It smells like fresh rain."},
+    {"word": "without", "cefr": "A1", "meaning": "In the absence of; not having or accompanied by", "example": "I cannot drink coffee without milk."},
+
+    # --- A2 LEVEL (Intermediate relational and boundary prepositions) ---
+    {"word": "above", "cefr": "A2", "meaning": "At a higher position or rank than", "example": "The painting hangs above the fireplace."},
+    {"word": "below", "cefr": "A2", "meaning": "At a lower level or under", "example": "Sign your name below the line."},
+    {"word": "across", "cefr": "A2", "meaning": "From one side to the opposite side of an area", "example": "They sailed across the Atlantic Ocean."},
+    {"word": "through", "cefr": "A2", "meaning": "Moving in one side and out the other side", "example": "Sunlight filtered through the trees."},
+    {"word": "around", "cefr": "A2", "meaning": "Surrounding; on every side of", "example": "The earth revolves around the sun."},
+    {"word": "round", "cefr": "A2", "meaning": "Encircling or moving on every side of", "example": "We sat round the campfire singing."},
+    {"word": "against", "cefr": "A2", "meaning": "In opposition to, or touching in support", "example": "The ladder is leaning against the wall."},
+    {"word": "during", "cefr": "A2", "meaning": "Throughout the course or duration of an event", "example": "He fell asleep during the lecture."},
+    {"word": "until", "cefr": "A2", "meaning": "Up to the point in time mentioned", "example": "The museum is open until 7 PM."},
+    {"word": "till", "cefr": "A2", "meaning": "Until; up to the time when", "example": "Wait till the rain stops before driving."},
+    {"word": "since", "cefr": "A2", "meaning": "From a definite past time until the present", "example": "I have been waiting since noon."},
+    {"word": "inside", "cefr": "A2", "meaning": "Within the boundaries or interior of", "example": "Leave your shoes inside the doorway."},
+    {"word": "outside", "cefr": "A2", "meaning": "On the outer side or exterior of", "example": "Wait outside while I grab my coat."},
+    {"word": "in front of", "cefr": "A2", "meaning": "Directly ahead of or facing", "example": "Stand in front of the camera and smile."},
+    {"word": "opposite", "cefr": "A2", "meaning": "Facing or across from", "example": "Our office is opposite the courthouse."},
+    {"word": "among", "cefr": "A2", "meaning": "In the middle of three or more objects or people", "example": "She found her ring among the old papers."},
+    {"word": "past", "cefr": "A2", "meaning": "Beyond in space, time, or a boundary", "example": "Walk past the fountain and turn right."},
+    {"word": "along", "cefr": "A2", "meaning": "Following the linear path of a road or river", "example": "Trees grow along the river bank."},
+    {"word": "towards", "cefr": "A2", "meaning": "In the direction of", "example": "They are heading towards the mountains."},
+    {"word": "toward", "cefr": "A2", "meaning": "In the direction of (North American variant)", "example": "He walked toward the exit."},
+    {"word": "off", "cefr": "A2", "meaning": "Away from a place or surface", "example": "Take your shoes off the couch."},
+    {"word": "onto", "cefr": "A2", "meaning": "Movement onto a surface", "example": "The squirrel jumped onto the branch."},
+    {"word": "upon", "cefr": "A2", "meaning": "More formal version of on", "example": "Once upon a time in a faraway land."},
+    {"word": "because of", "cefr": "A2", "meaning": "As a result of; due to", "example": "We stayed indoors because of the storm."},
+    {"word": "close to", "cefr": "A2", "meaning": "Near in physical proximity or time", "example": "We are close to reaching our goal."},
+    {"word": "far from", "cefr": "A2", "meaning": "At a considerable distance from", "example": "The cabin is far from any town."},
+    {"word": "up to", "cefr": "A2", "meaning": "Indicating a maximum limit or person responsible", "example": "You can invite up to four guests."},
+
+    # --- B1 LEVEL (Complex relations, contrasts, and additions) ---
+    {"word": "beyond", "cefr": "B1", "meaning": "Further away than; exceeding normal limits", "example": "The cost went beyond our budget."},
+    {"word": "beneath", "cefr": "B1", "meaning": "Directly underneath; unworthy of", "example": "Treasures buried beneath the ocean floor."},
+    {"word": "beside", "cefr": "B1", "meaning": "At the side of; immediately adjacent to", "example": "She sat beside her sister on the train."},
+    {"word": "besides", "cefr": "B1", "meaning": "In addition to; apart from", "example": "Besides Spanish, she knows Italian."},
+    {"word": "except", "cefr": "B1", "meaning": "Not including; other than", "example": "Everyone agreed except the chairperson."},
+    {"word": "except for", "cefr": "B1", "meaning": "With the exception of", "example": "The street was silent except for a barking dog."},
+    {"word": "despite", "cefr": "B1", "meaning": "Without being affected by; regardless of", "example": "We had fun despite the sudden downpour."},
+    {"word": "in spite of", "cefr": "B1", "meaning": "Regardless of; without being stopped by", "example": "In spite of difficulties, they persevered."},
+    {"word": "throughout", "cefr": "B1", "meaning": "All through; in every part of a period or place", "example": "Celebrations continued throughout the weekend."},
+    {"word": "instead of", "cefr": "B1", "meaning": "In substitution or replacement for", "example": "Take the train instead of driving in traffic."},
+    {"word": "according to", "cefr": "B1", "meaning": "As stated by or conforming to", "example": "According to the map, the lake is ahead."},
+    {"word": "due to", "cefr": "B1", "meaning": "As a result of; caused by", "example": "School was closed due to heavy snow."},
+    {"word": "along with", "cefr": "B1", "meaning": "Together with; in company with", "example": "He brought his guitar along with his luggage."},
+    {"word": "as well as", "cefr": "B1", "meaning": "In addition to; besides", "example": "She teaches chemistry as well as physics."},
+    {"word": "apart from", "cefr": "B1", "meaning": "Except for; not considering", "example": "Apart from one rainy day, the trip was wonderful."},
+    {"word": "aside from", "cefr": "B1", "meaning": "Except for; in addition to", "example": "Aside from a minor delay, everything went smoothly."},
+    {"word": "as for", "cefr": "B1", "meaning": "With regard to; in reference to", "example": "As for dessert, we ordered cheesecake."},
+    {"word": "within", "cefr": "B1", "meaning": "Inside a specific limit, boundary, or duration", "example": "The results will be announced within a week."},
+    {"word": "underneath", "cefr": "B1", "meaning": "Beneath; directly below the base", "example": "He found his glasses underneath the cushions."},
+    {"word": "prior to", "cefr": "B1", "meaning": "Before an event or specified time", "example": "Please turn off your phone prior to the flight."},
+    {"word": "thanks to", "cefr": "B1", "meaning": "Owing to; because of someone/something positive", "example": "Thanks to your encouragement, I applied for the job."},
+    {"word": "on top of", "cefr": "B1", "meaning": "Resting upon the highest part; in addition to", "example": "Place the cherries on top of the cake."},
+    {"word": "in place of", "cefr": "B1", "meaning": "In substitution for; replacing", "example": "Use honey in place of refined sugar."},
+
+    # --- B2 LEVEL (Abstract, formal, and compound prepositions) ---
+    {"word": "amid", "cefr": "B2", "meaning": "In the middle of or surrounded by (a situation/events)", "example": "She kept her composure amid the chaos."},
+    {"word": "amidst", "cefr": "B2", "meaning": "Surrounded by; amidst circumstances", "example": "Flowers blossomed amidst the ancient ruins."},
+    {"word": "concerning", "cefr": "B2", "meaning": "Relating to; with regard to; about", "example": "We received an email concerning policy updates."},
+    {"word": "regarding", "cefr": "B2", "meaning": "In reference to; concerning", "example": "I wrote an inquiry regarding the job opening."},
+    {"word": "as regards", "cefr": "B2", "meaning": "Concerning; in connection with", "example": "As regards the schedule, we will finalize it tomorrow."},
+    {"word": "regardless of", "cefr": "B2", "meaning": "Without paying attention to; despite", "example": "The law applies to everyone regardless of rank."},
+    {"word": "in addition to", "cefr": "B2", "meaning": "Added to; along with", "example": "In addition to a salary, bonuses are provided."},
+    {"word": "in terms of", "cefr": "B2", "meaning": "Evaluating in the context or metric of", "example": "In terms of efficiency, this system wins."},
+    {"word": "on behalf of", "cefr": "B2", "meaning": "Representing or acting for someone else", "example": "She spoke on behalf of the entire graduating class."},
+    {"word": "in case of", "cefr": "B2", "meaning": "In the event of an emergency or occurrence", "example": "In case of emergency, pull the red lever."},
+    {"word": "in accordance with", "cefr": "B2", "meaning": "In compliance or conformity with a rule", "example": "The report was filed in accordance with guidelines."},
+    {"word": "by means of", "cefr": "B2", "meaning": "Using the tool, method, or mechanism of", "example": "Communication occurred by means of encrypted messages."},
+    {"word": "on account of", "cefr": "B2", "meaning": "Because of; on the grounds of", "example": "School closed early on account of icy roads."},
+    {"word": "ahead of", "cefr": "B2", "meaning": "Further in advance or front of", "example": "Our team finished the milestone ahead of schedule."},
+    {"word": "in comparison with", "cefr": "B2", "meaning": "When juxtaposed or measured against", "example": "In comparison with last month, costs dropped."},
+    {"word": "in response to", "cefr": "B2", "meaning": "As an answer, reaction, or reply to", "example": "The museum expanded hours in response to demand."},
+    {"word": "with respect to", "cefr": "B2", "meaning": "Referring specifically to", "example": "With respect to your question, the answer is yes."},
+    {"word": "with regard to", "cefr": "B2", "meaning": "In connection with or concerning", "example": "I am calling with regard to your recent order."},
+    {"word": "as a result of", "cefr": "B2", "meaning": "Caused by or proceeding as an outcome of", "example": "Profits grew as a result of digital marketing."},
+    {"word": "per", "cefr": "B2", "meaning": "For each; in accordance with", "example": "You may submit two entries per household."},
+    {"word": "via", "cefr": "B2", "meaning": "By way of or through the medium of", "example": "Send the completed form via secure email."},
+    {"word": "versus", "cefr": "B2", "meaning": "Against (used in comparisons, sports, or law)", "example": "The debate centered on nature versus nurture."},
+    {"word": "in favor of", "cefr": "B2", "meaning": "In support of an idea or decision", "example": "The majority voted in favor of the proposal."},
+    {"word": "by way of", "cefr": "B2", "meaning": "Via a route; serving as an explanation/example", "example": "He offered an apology by way of an explanation."},
+    {"word": "as of", "cefr": "B2", "meaning": "Beginning from a particular date or time", "example": "As of next Monday, the new policy takes effect."},
+
+    # --- C1 LEVEL (Nuanced, formal, legal, and academic prepositions) ---
+    {"word": "in lieu of", "cefr": "C1", "meaning": "In substitution for; instead of", "example": "He took equity in lieu of cash compensation."},
+    {"word": "by virtue of", "cefr": "C1", "meaning": "Because of or by the authority of", "example": "By virtue of his position, he signed the treaty."},
+    {"word": "for the sake of", "cefr": "C1", "meaning": "In the interest or benefit of someone/something", "example": "They resolved the dispute for the sake of peace."},
+    {"word": "in light of", "cefr": "C1", "meaning": "Taking newly revealed facts into consideration", "example": "In light of recent findings, safety protocols were upgraded."},
+    {"word": "in view of", "cefr": "C1", "meaning": "Taking into account; considering", "example": "In view of current trends, expansion was paused."},
+    {"word": "irrespective of", "cefr": "C1", "meaning": "Regardless of; without taking account of", "example": "Assistance is provided irrespective of background."},
+    {"word": "notwithstanding", "cefr": "C1", "meaning": "In spite of; despite", "example": "Notwithstanding the heavy turbulence, the plane landed safely."},
+    {"word": "pending", "cefr": "C1", "meaning": "Awaiting or until the completion of", "example": "He remained on leave pending an internal review."},
+    {"word": "subject to", "cefr": "C1", "meaning": "Contingent or conditional upon", "example": "The contract is subject to board approval."},
+    {"word": "unto", "cefr": "C1", "meaning": "Formal or archaic for to/towards", "example": "Be faithful unto the end."},
+    {"word": "vis-a-vis", "cefr": "C1", "meaning": "In comparison with; in relation to", "example": "Our currency strengthened vis-a-vis the dollar."},
+    {"word": "apropos of", "cefr": "C1", "meaning": "Concerning; speaking of; in reference to", "example": "Apropos of your remark, let me clarify the numbers."},
+    {"word": "in the wake of", "cefr": "C1", "meaning": "Immediately following or as a consequence of", "example": "Reforms were enacted in the wake of the crisis."},
+    {"word": "on the part of", "cefr": "C1", "meaning": "Carried out by or characteristic of", "example": "It represented a mistake on the part of the organizers."},
+    {"word": "with reference to", "cefr": "C1", "meaning": "Regarding or in connection with", "example": "With reference to paragraph three, please clarify your intent."},
+    {"word": "pursuant to", "cefr": "C1", "meaning": "In accordance with a statute, rule, or legal clause", "example": "Pursuant to article 5, notice was formally served."},
+    {"word": "in the face of", "cefr": "C1", "meaning": "Confronted by or despite strong adversity", "example": "They showed resilience in the face of daunting odds."},
+    {"word": "at the expense of", "cefr": "C1", "meaning": "Resulting in harm or sacrifice to something else", "example": "Economic gain must not come at the expense of our environment."},
+    {"word": "for want of", "cefr": "C1", "meaning": "Because of a lack or shortage of", "example": "The investigation stalled for want of sufficient evidence."},
+    {"word": "in excess of", "cefr": "C1", "meaning": "Surpassing or more than", "example": "Donations were in excess of half a million dollars."},
+    {"word": "barring", "cefr": "C1", "meaning": "Except if there is; unless prevented by", "example": "Barring unforeseen delays, we arrive at noon."},
+    {"word": "save", "cefr": "C1", "meaning": "Except; other than (formal literary)", "example": "The library was silent save for the rustle of pages."},
+    {"word": "in quest of", "cefr": "C1", "meaning": "In search of or pursuing", "example": "Explorers traveled uncharted lands in quest of gold."},
+    {"word": "at the hands of", "cefr": "C1", "meaning": "Caused or inflicted by someone", "example": "The team suffered defeat at the hands of the champions."}
+]
+
+# Build complete VocabularyWord objects
+result = []
+for i, item in enumerate(prepositions_master):
+    result.append({
+        "word": item["word"],
+        "meaning": item["meaning"],
+        "cefrLevel": item["cefr"],
+        "partOfSpeech": "preposition",
+        "pronunciation": f"/{item['word']}/",
+        "exampleSentence": item["example"],
+        "exampleSentences": [item["example"]],
+        "status": "new",
+        "createdAt": 1700000000000 + i,
+        "reviewCount": 0,
+        "correctCount": 0,
+        "mistakeCount": 0
+    })
+
+print(f"Total authentic English prepositions compiled: {len(result)}")
+levels = {}
+for r in result:
+    lvl = r["cefrLevel"]
+    levels[lvl] = levels.get(lvl, 0) + 1
+print("Levels breakdown:", levels)
+
+with open("public/english-prepositions.json", "w", encoding="utf-8") as f:
+    json.dump(result, f, indent=2, ensure_ascii=False)
+print("Successfully wrote public/english-prepositions.json")

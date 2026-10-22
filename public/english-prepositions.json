@@ -1,0 +1,1970 @@
+[
+  {
+    "word": "in",
+    "meaning": "Inside a container, place, period of time, or state",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in/",
+    "exampleSentence": "She is sitting in the library.",
+    "exampleSentences": [
+      "She is sitting in the library."
+    ],
+    "status": "new",
+    "createdAt": 1700000000000,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "on",
+    "meaning": "Physically supported by a surface, or indicating a specific day/date",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/on/",
+    "exampleSentence": "The keys are on the kitchen table.",
+    "exampleSentences": [
+      "The keys are on the kitchen table."
+    ],
+    "status": "new",
+    "createdAt": 1700000000001,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "at",
+    "meaning": "Indicating a particular point, location, or exact time",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/at/",
+    "exampleSentence": "Let's meet at the train station at 6 PM.",
+    "exampleSentences": [
+      "Let's meet at the train station at 6 PM."
+    ],
+    "status": "new",
+    "createdAt": 1700000000002,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "to",
+    "meaning": "In the direction of or reaching a destination",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/to/",
+    "exampleSentence": "He walked to the store.",
+    "exampleSentences": [
+      "He walked to the store."
+    ],
+    "status": "new",
+    "createdAt": 1700000000003,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "for",
+    "meaning": "Indicating purpose, recipient, or duration of time",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/for/",
+    "exampleSentence": "I bought this present for you.",
+    "exampleSentences": [
+      "I bought this present for you."
+    ],
+    "status": "new",
+    "createdAt": 1700000000004,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "with",
+    "meaning": "Accompanied by someone, possessing something, or using a tool",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/with/",
+    "exampleSentence": "She came with her best friend.",
+    "exampleSentences": [
+      "She came with her best friend."
+    ],
+    "status": "new",
+    "createdAt": 1700000000005,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "from",
+    "meaning": "Indicating the point of origin, starting place, or source",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/from/",
+    "exampleSentence": "We flew from London to Paris.",
+    "exampleSentences": [
+      "We flew from London to Paris."
+    ],
+    "status": "new",
+    "createdAt": 1700000000006,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "of",
+    "meaning": "Belonging to, relating to, or made of something",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/of/",
+    "exampleSentence": "She is the director of the school.",
+    "exampleSentences": [
+      "She is the director of the school."
+    ],
+    "status": "new",
+    "createdAt": 1700000000007,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "by",
+    "meaning": "Beside or near, or indicating the agent or means",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/by/",
+    "exampleSentence": "He sat by the fireplace reading.",
+    "exampleSentences": [
+      "He sat by the fireplace reading."
+    ],
+    "status": "new",
+    "createdAt": 1700000000008,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "about",
+    "meaning": "On the subject of, concerning, or approximately",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/about/",
+    "exampleSentence": "Tell me about your new project.",
+    "exampleSentences": [
+      "Tell me about your new project."
+    ],
+    "status": "new",
+    "createdAt": 1700000000009,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "after",
+    "meaning": "Following in time or sequential order",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/after/",
+    "exampleSentence": "We can get coffee after class.",
+    "exampleSentences": [
+      "We can get coffee after class."
+    ],
+    "status": "new",
+    "createdAt": 1700000000010,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "before",
+    "meaning": "Preceding in time, or directly in front of",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/before/",
+    "exampleSentence": "Check the schedule before leaving.",
+    "exampleSentences": [
+      "Check the schedule before leaving."
+    ],
+    "status": "new",
+    "createdAt": 1700000000011,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "under",
+    "meaning": "Situated directly below or beneath something",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/under/",
+    "exampleSentence": "The dog is sleeping under the desk.",
+    "exampleSentences": [
+      "The dog is sleeping under the desk."
+    ],
+    "status": "new",
+    "createdAt": 1700000000012,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "between",
+    "meaning": "In the space separating two points, items, or people",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/between/",
+    "exampleSentence": "The pharmacy is between two shops.",
+    "exampleSentences": [
+      "The pharmacy is between two shops."
+    ],
+    "status": "new",
+    "createdAt": 1700000000013,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "behind",
+    "meaning": "At or to the back of someone or something",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/behind/",
+    "exampleSentence": "The parking lot is behind the building.",
+    "exampleSentences": [
+      "The parking lot is behind the building."
+    ],
+    "status": "new",
+    "createdAt": 1700000000014,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "next to",
+    "meaning": "Directly alongside or beside someone/something",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/next to/",
+    "exampleSentence": "Come sit next to me.",
+    "exampleSentences": [
+      "Come sit next to me."
+    ],
+    "status": "new",
+    "createdAt": 1700000000015,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "near",
+    "meaning": "Close to; at a short distance from",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/near/",
+    "exampleSentence": "They live near the city center.",
+    "exampleSentences": [
+      "They live near the city center."
+    ],
+    "status": "new",
+    "createdAt": 1700000000016,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "up",
+    "meaning": "Moving to a higher place, position, or along a path",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/up/",
+    "exampleSentence": "She ran up the wooden stairs.",
+    "exampleSentences": [
+      "She ran up the wooden stairs."
+    ],
+    "status": "new",
+    "createdAt": 1700000000017,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "down",
+    "meaning": "Moving to a lower position or along a slope",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/down/",
+    "exampleSentence": "The ball rolled down the hill.",
+    "exampleSentences": [
+      "The ball rolled down the hill."
+    ],
+    "status": "new",
+    "createdAt": 1700000000018,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "into",
+    "meaning": "Movement toward the inside of an enclosure or space",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/into/",
+    "exampleSentence": "He stepped into the elevator.",
+    "exampleSentences": [
+      "He stepped into the elevator."
+    ],
+    "status": "new",
+    "createdAt": 1700000000019,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "out of",
+    "meaning": "Moving from the interior to the exterior",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/out of/",
+    "exampleSentence": "Take the books out of the backpack.",
+    "exampleSentences": [
+      "Take the books out of the backpack."
+    ],
+    "status": "new",
+    "createdAt": 1700000000020,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "over",
+    "meaning": "Directly higher than; across and above",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/over/",
+    "exampleSentence": "A rainbow appeared over the lake.",
+    "exampleSentences": [
+      "A rainbow appeared over the lake."
+    ],
+    "status": "new",
+    "createdAt": 1700000000021,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "like",
+    "meaning": "Similar to; resembling someone or something",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/like/",
+    "exampleSentence": "It smells like fresh rain.",
+    "exampleSentences": [
+      "It smells like fresh rain."
+    ],
+    "status": "new",
+    "createdAt": 1700000000022,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "without",
+    "meaning": "In the absence of; not having or accompanied by",
+    "cefrLevel": "A1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/without/",
+    "exampleSentence": "I cannot drink coffee without milk.",
+    "exampleSentences": [
+      "I cannot drink coffee without milk."
+    ],
+    "status": "new",
+    "createdAt": 1700000000023,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "above",
+    "meaning": "At a higher position or rank than",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/above/",
+    "exampleSentence": "The painting hangs above the fireplace.",
+    "exampleSentences": [
+      "The painting hangs above the fireplace."
+    ],
+    "status": "new",
+    "createdAt": 1700000000024,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "below",
+    "meaning": "At a lower level or under",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/below/",
+    "exampleSentence": "Sign your name below the line.",
+    "exampleSentences": [
+      "Sign your name below the line."
+    ],
+    "status": "new",
+    "createdAt": 1700000000025,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "across",
+    "meaning": "From one side to the opposite side of an area",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/across/",
+    "exampleSentence": "They sailed across the Atlantic Ocean.",
+    "exampleSentences": [
+      "They sailed across the Atlantic Ocean."
+    ],
+    "status": "new",
+    "createdAt": 1700000000026,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "through",
+    "meaning": "Moving in one side and out the other side",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/through/",
+    "exampleSentence": "Sunlight filtered through the trees.",
+    "exampleSentences": [
+      "Sunlight filtered through the trees."
+    ],
+    "status": "new",
+    "createdAt": 1700000000027,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "around",
+    "meaning": "Surrounding; on every side of",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/around/",
+    "exampleSentence": "The earth revolves around the sun.",
+    "exampleSentences": [
+      "The earth revolves around the sun."
+    ],
+    "status": "new",
+    "createdAt": 1700000000028,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "round",
+    "meaning": "Encircling or moving on every side of",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/round/",
+    "exampleSentence": "We sat round the campfire singing.",
+    "exampleSentences": [
+      "We sat round the campfire singing."
+    ],
+    "status": "new",
+    "createdAt": 1700000000029,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "against",
+    "meaning": "In opposition to, or touching in support",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/against/",
+    "exampleSentence": "The ladder is leaning against the wall.",
+    "exampleSentences": [
+      "The ladder is leaning against the wall."
+    ],
+    "status": "new",
+    "createdAt": 1700000000030,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "during",
+    "meaning": "Throughout the course or duration of an event",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/during/",
+    "exampleSentence": "He fell asleep during the lecture.",
+    "exampleSentences": [
+      "He fell asleep during the lecture."
+    ],
+    "status": "new",
+    "createdAt": 1700000000031,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "until",
+    "meaning": "Up to the point in time mentioned",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/until/",
+    "exampleSentence": "The museum is open until 7 PM.",
+    "exampleSentences": [
+      "The museum is open until 7 PM."
+    ],
+    "status": "new",
+    "createdAt": 1700000000032,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "till",
+    "meaning": "Until; up to the time when",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/till/",
+    "exampleSentence": "Wait till the rain stops before driving.",
+    "exampleSentences": [
+      "Wait till the rain stops before driving."
+    ],
+    "status": "new",
+    "createdAt": 1700000000033,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "since",
+    "meaning": "From a definite past time until the present",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/since/",
+    "exampleSentence": "I have been waiting since noon.",
+    "exampleSentences": [
+      "I have been waiting since noon."
+    ],
+    "status": "new",
+    "createdAt": 1700000000034,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "inside",
+    "meaning": "Within the boundaries or interior of",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/inside/",
+    "exampleSentence": "Leave your shoes inside the doorway.",
+    "exampleSentences": [
+      "Leave your shoes inside the doorway."
+    ],
+    "status": "new",
+    "createdAt": 1700000000035,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "outside",
+    "meaning": "On the outer side or exterior of",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/outside/",
+    "exampleSentence": "Wait outside while I grab my coat.",
+    "exampleSentences": [
+      "Wait outside while I grab my coat."
+    ],
+    "status": "new",
+    "createdAt": 1700000000036,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in front of",
+    "meaning": "Directly ahead of or facing",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in front of/",
+    "exampleSentence": "Stand in front of the camera and smile.",
+    "exampleSentences": [
+      "Stand in front of the camera and smile."
+    ],
+    "status": "new",
+    "createdAt": 1700000000037,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "opposite",
+    "meaning": "Facing or across from",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/opposite/",
+    "exampleSentence": "Our office is opposite the courthouse.",
+    "exampleSentences": [
+      "Our office is opposite the courthouse."
+    ],
+    "status": "new",
+    "createdAt": 1700000000038,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "among",
+    "meaning": "In the middle of three or more objects or people",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/among/",
+    "exampleSentence": "She found her ring among the old papers.",
+    "exampleSentences": [
+      "She found her ring among the old papers."
+    ],
+    "status": "new",
+    "createdAt": 1700000000039,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "past",
+    "meaning": "Beyond in space, time, or a boundary",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/past/",
+    "exampleSentence": "Walk past the fountain and turn right.",
+    "exampleSentences": [
+      "Walk past the fountain and turn right."
+    ],
+    "status": "new",
+    "createdAt": 1700000000040,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "along",
+    "meaning": "Following the linear path of a road or river",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/along/",
+    "exampleSentence": "Trees grow along the river bank.",
+    "exampleSentences": [
+      "Trees grow along the river bank."
+    ],
+    "status": "new",
+    "createdAt": 1700000000041,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "towards",
+    "meaning": "In the direction of",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/towards/",
+    "exampleSentence": "They are heading towards the mountains.",
+    "exampleSentences": [
+      "They are heading towards the mountains."
+    ],
+    "status": "new",
+    "createdAt": 1700000000042,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "toward",
+    "meaning": "In the direction of (North American variant)",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/toward/",
+    "exampleSentence": "He walked toward the exit.",
+    "exampleSentences": [
+      "He walked toward the exit."
+    ],
+    "status": "new",
+    "createdAt": 1700000000043,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "off",
+    "meaning": "Away from a place or surface",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/off/",
+    "exampleSentence": "Take your shoes off the couch.",
+    "exampleSentences": [
+      "Take your shoes off the couch."
+    ],
+    "status": "new",
+    "createdAt": 1700000000044,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "onto",
+    "meaning": "Movement onto a surface",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/onto/",
+    "exampleSentence": "The squirrel jumped onto the branch.",
+    "exampleSentences": [
+      "The squirrel jumped onto the branch."
+    ],
+    "status": "new",
+    "createdAt": 1700000000045,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "upon",
+    "meaning": "More formal version of on",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/upon/",
+    "exampleSentence": "Once upon a time in a faraway land.",
+    "exampleSentences": [
+      "Once upon a time in a faraway land."
+    ],
+    "status": "new",
+    "createdAt": 1700000000046,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "because of",
+    "meaning": "As a result of; due to",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/because of/",
+    "exampleSentence": "We stayed indoors because of the storm.",
+    "exampleSentences": [
+      "We stayed indoors because of the storm."
+    ],
+    "status": "new",
+    "createdAt": 1700000000047,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "close to",
+    "meaning": "Near in physical proximity or time",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/close to/",
+    "exampleSentence": "We are close to reaching our goal.",
+    "exampleSentences": [
+      "We are close to reaching our goal."
+    ],
+    "status": "new",
+    "createdAt": 1700000000048,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "far from",
+    "meaning": "At a considerable distance from",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/far from/",
+    "exampleSentence": "The cabin is far from any town.",
+    "exampleSentences": [
+      "The cabin is far from any town."
+    ],
+    "status": "new",
+    "createdAt": 1700000000049,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "up to",
+    "meaning": "Indicating a maximum limit or person responsible",
+    "cefrLevel": "A2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/up to/",
+    "exampleSentence": "You can invite up to four guests.",
+    "exampleSentences": [
+      "You can invite up to four guests."
+    ],
+    "status": "new",
+    "createdAt": 1700000000050,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "beyond",
+    "meaning": "Further away than; exceeding normal limits",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/beyond/",
+    "exampleSentence": "The cost went beyond our budget.",
+    "exampleSentences": [
+      "The cost went beyond our budget."
+    ],
+    "status": "new",
+    "createdAt": 1700000000051,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "beneath",
+    "meaning": "Directly underneath; unworthy of",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/beneath/",
+    "exampleSentence": "Treasures buried beneath the ocean floor.",
+    "exampleSentences": [
+      "Treasures buried beneath the ocean floor."
+    ],
+    "status": "new",
+    "createdAt": 1700000000052,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "beside",
+    "meaning": "At the side of; immediately adjacent to",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/beside/",
+    "exampleSentence": "She sat beside her sister on the train.",
+    "exampleSentences": [
+      "She sat beside her sister on the train."
+    ],
+    "status": "new",
+    "createdAt": 1700000000053,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "besides",
+    "meaning": "In addition to; apart from",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/besides/",
+    "exampleSentence": "Besides Spanish, she knows Italian.",
+    "exampleSentences": [
+      "Besides Spanish, she knows Italian."
+    ],
+    "status": "new",
+    "createdAt": 1700000000054,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "except",
+    "meaning": "Not including; other than",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/except/",
+    "exampleSentence": "Everyone agreed except the chairperson.",
+    "exampleSentences": [
+      "Everyone agreed except the chairperson."
+    ],
+    "status": "new",
+    "createdAt": 1700000000055,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "except for",
+    "meaning": "With the exception of",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/except for/",
+    "exampleSentence": "The street was silent except for a barking dog.",
+    "exampleSentences": [
+      "The street was silent except for a barking dog."
+    ],
+    "status": "new",
+    "createdAt": 1700000000056,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "despite",
+    "meaning": "Without being affected by; regardless of",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/despite/",
+    "exampleSentence": "We had fun despite the sudden downpour.",
+    "exampleSentences": [
+      "We had fun despite the sudden downpour."
+    ],
+    "status": "new",
+    "createdAt": 1700000000057,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in spite of",
+    "meaning": "Regardless of; without being stopped by",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in spite of/",
+    "exampleSentence": "In spite of difficulties, they persevered.",
+    "exampleSentences": [
+      "In spite of difficulties, they persevered."
+    ],
+    "status": "new",
+    "createdAt": 1700000000058,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "throughout",
+    "meaning": "All through; in every part of a period or place",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/throughout/",
+    "exampleSentence": "Celebrations continued throughout the weekend.",
+    "exampleSentences": [
+      "Celebrations continued throughout the weekend."
+    ],
+    "status": "new",
+    "createdAt": 1700000000059,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "instead of",
+    "meaning": "In substitution or replacement for",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/instead of/",
+    "exampleSentence": "Take the train instead of driving in traffic.",
+    "exampleSentences": [
+      "Take the train instead of driving in traffic."
+    ],
+    "status": "new",
+    "createdAt": 1700000000060,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "according to",
+    "meaning": "As stated by or conforming to",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/according to/",
+    "exampleSentence": "According to the map, the lake is ahead.",
+    "exampleSentences": [
+      "According to the map, the lake is ahead."
+    ],
+    "status": "new",
+    "createdAt": 1700000000061,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "due to",
+    "meaning": "As a result of; caused by",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/due to/",
+    "exampleSentence": "School was closed due to heavy snow.",
+    "exampleSentences": [
+      "School was closed due to heavy snow."
+    ],
+    "status": "new",
+    "createdAt": 1700000000062,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "along with",
+    "meaning": "Together with; in company with",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/along with/",
+    "exampleSentence": "He brought his guitar along with his luggage.",
+    "exampleSentences": [
+      "He brought his guitar along with his luggage."
+    ],
+    "status": "new",
+    "createdAt": 1700000000063,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "as well as",
+    "meaning": "In addition to; besides",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/as well as/",
+    "exampleSentence": "She teaches chemistry as well as physics.",
+    "exampleSentences": [
+      "She teaches chemistry as well as physics."
+    ],
+    "status": "new",
+    "createdAt": 1700000000064,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "apart from",
+    "meaning": "Except for; not considering",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/apart from/",
+    "exampleSentence": "Apart from one rainy day, the trip was wonderful.",
+    "exampleSentences": [
+      "Apart from one rainy day, the trip was wonderful."
+    ],
+    "status": "new",
+    "createdAt": 1700000000065,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "aside from",
+    "meaning": "Except for; in addition to",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/aside from/",
+    "exampleSentence": "Aside from a minor delay, everything went smoothly.",
+    "exampleSentences": [
+      "Aside from a minor delay, everything went smoothly."
+    ],
+    "status": "new",
+    "createdAt": 1700000000066,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "as for",
+    "meaning": "With regard to; in reference to",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/as for/",
+    "exampleSentence": "As for dessert, we ordered cheesecake.",
+    "exampleSentences": [
+      "As for dessert, we ordered cheesecake."
+    ],
+    "status": "new",
+    "createdAt": 1700000000067,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "within",
+    "meaning": "Inside a specific limit, boundary, or duration",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/within/",
+    "exampleSentence": "The results will be announced within a week.",
+    "exampleSentences": [
+      "The results will be announced within a week."
+    ],
+    "status": "new",
+    "createdAt": 1700000000068,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "underneath",
+    "meaning": "Beneath; directly below the base",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/underneath/",
+    "exampleSentence": "He found his glasses underneath the cushions.",
+    "exampleSentences": [
+      "He found his glasses underneath the cushions."
+    ],
+    "status": "new",
+    "createdAt": 1700000000069,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "prior to",
+    "meaning": "Before an event or specified time",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/prior to/",
+    "exampleSentence": "Please turn off your phone prior to the flight.",
+    "exampleSentences": [
+      "Please turn off your phone prior to the flight."
+    ],
+    "status": "new",
+    "createdAt": 1700000000070,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "thanks to",
+    "meaning": "Owing to; because of someone/something positive",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/thanks to/",
+    "exampleSentence": "Thanks to your encouragement, I applied for the job.",
+    "exampleSentences": [
+      "Thanks to your encouragement, I applied for the job."
+    ],
+    "status": "new",
+    "createdAt": 1700000000071,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "on top of",
+    "meaning": "Resting upon the highest part; in addition to",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/on top of/",
+    "exampleSentence": "Place the cherries on top of the cake.",
+    "exampleSentences": [
+      "Place the cherries on top of the cake."
+    ],
+    "status": "new",
+    "createdAt": 1700000000072,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in place of",
+    "meaning": "In substitution for; replacing",
+    "cefrLevel": "B1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in place of/",
+    "exampleSentence": "Use honey in place of refined sugar.",
+    "exampleSentences": [
+      "Use honey in place of refined sugar."
+    ],
+    "status": "new",
+    "createdAt": 1700000000073,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "amid",
+    "meaning": "In the middle of or surrounded by (a situation/events)",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/amid/",
+    "exampleSentence": "She kept her composure amid the chaos.",
+    "exampleSentences": [
+      "She kept her composure amid the chaos."
+    ],
+    "status": "new",
+    "createdAt": 1700000000074,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "amidst",
+    "meaning": "Surrounded by; amidst circumstances",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/amidst/",
+    "exampleSentence": "Flowers blossomed amidst the ancient ruins.",
+    "exampleSentences": [
+      "Flowers blossomed amidst the ancient ruins."
+    ],
+    "status": "new",
+    "createdAt": 1700000000075,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "concerning",
+    "meaning": "Relating to; with regard to; about",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/concerning/",
+    "exampleSentence": "We received an email concerning policy updates.",
+    "exampleSentences": [
+      "We received an email concerning policy updates."
+    ],
+    "status": "new",
+    "createdAt": 1700000000076,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "regarding",
+    "meaning": "In reference to; concerning",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/regarding/",
+    "exampleSentence": "I wrote an inquiry regarding the job opening.",
+    "exampleSentences": [
+      "I wrote an inquiry regarding the job opening."
+    ],
+    "status": "new",
+    "createdAt": 1700000000077,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "as regards",
+    "meaning": "Concerning; in connection with",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/as regards/",
+    "exampleSentence": "As regards the schedule, we will finalize it tomorrow.",
+    "exampleSentences": [
+      "As regards the schedule, we will finalize it tomorrow."
+    ],
+    "status": "new",
+    "createdAt": 1700000000078,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "regardless of",
+    "meaning": "Without paying attention to; despite",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/regardless of/",
+    "exampleSentence": "The law applies to everyone regardless of rank.",
+    "exampleSentences": [
+      "The law applies to everyone regardless of rank."
+    ],
+    "status": "new",
+    "createdAt": 1700000000079,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in addition to",
+    "meaning": "Added to; along with",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in addition to/",
+    "exampleSentence": "In addition to a salary, bonuses are provided.",
+    "exampleSentences": [
+      "In addition to a salary, bonuses are provided."
+    ],
+    "status": "new",
+    "createdAt": 1700000000080,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in terms of",
+    "meaning": "Evaluating in the context or metric of",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in terms of/",
+    "exampleSentence": "In terms of efficiency, this system wins.",
+    "exampleSentences": [
+      "In terms of efficiency, this system wins."
+    ],
+    "status": "new",
+    "createdAt": 1700000000081,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "on behalf of",
+    "meaning": "Representing or acting for someone else",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/on behalf of/",
+    "exampleSentence": "She spoke on behalf of the entire graduating class.",
+    "exampleSentences": [
+      "She spoke on behalf of the entire graduating class."
+    ],
+    "status": "new",
+    "createdAt": 1700000000082,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in case of",
+    "meaning": "In the event of an emergency or occurrence",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in case of/",
+    "exampleSentence": "In case of emergency, pull the red lever.",
+    "exampleSentences": [
+      "In case of emergency, pull the red lever."
+    ],
+    "status": "new",
+    "createdAt": 1700000000083,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in accordance with",
+    "meaning": "In compliance or conformity with a rule",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in accordance with/",
+    "exampleSentence": "The report was filed in accordance with guidelines.",
+    "exampleSentences": [
+      "The report was filed in accordance with guidelines."
+    ],
+    "status": "new",
+    "createdAt": 1700000000084,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "by means of",
+    "meaning": "Using the tool, method, or mechanism of",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/by means of/",
+    "exampleSentence": "Communication occurred by means of encrypted messages.",
+    "exampleSentences": [
+      "Communication occurred by means of encrypted messages."
+    ],
+    "status": "new",
+    "createdAt": 1700000000085,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "on account of",
+    "meaning": "Because of; on the grounds of",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/on account of/",
+    "exampleSentence": "School closed early on account of icy roads.",
+    "exampleSentences": [
+      "School closed early on account of icy roads."
+    ],
+    "status": "new",
+    "createdAt": 1700000000086,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "ahead of",
+    "meaning": "Further in advance or front of",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/ahead of/",
+    "exampleSentence": "Our team finished the milestone ahead of schedule.",
+    "exampleSentences": [
+      "Our team finished the milestone ahead of schedule."
+    ],
+    "status": "new",
+    "createdAt": 1700000000087,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in comparison with",
+    "meaning": "When juxtaposed or measured against",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in comparison with/",
+    "exampleSentence": "In comparison with last month, costs dropped.",
+    "exampleSentences": [
+      "In comparison with last month, costs dropped."
+    ],
+    "status": "new",
+    "createdAt": 1700000000088,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in response to",
+    "meaning": "As an answer, reaction, or reply to",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in response to/",
+    "exampleSentence": "The museum expanded hours in response to demand.",
+    "exampleSentences": [
+      "The museum expanded hours in response to demand."
+    ],
+    "status": "new",
+    "createdAt": 1700000000089,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "with respect to",
+    "meaning": "Referring specifically to",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/with respect to/",
+    "exampleSentence": "With respect to your question, the answer is yes.",
+    "exampleSentences": [
+      "With respect to your question, the answer is yes."
+    ],
+    "status": "new",
+    "createdAt": 1700000000090,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "with regard to",
+    "meaning": "In connection with or concerning",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/with regard to/",
+    "exampleSentence": "I am calling with regard to your recent order.",
+    "exampleSentences": [
+      "I am calling with regard to your recent order."
+    ],
+    "status": "new",
+    "createdAt": 1700000000091,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "as a result of",
+    "meaning": "Caused by or proceeding as an outcome of",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/as a result of/",
+    "exampleSentence": "Profits grew as a result of digital marketing.",
+    "exampleSentences": [
+      "Profits grew as a result of digital marketing."
+    ],
+    "status": "new",
+    "createdAt": 1700000000092,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "per",
+    "meaning": "For each; in accordance with",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/per/",
+    "exampleSentence": "You may submit two entries per household.",
+    "exampleSentences": [
+      "You may submit two entries per household."
+    ],
+    "status": "new",
+    "createdAt": 1700000000093,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "via",
+    "meaning": "By way of or through the medium of",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/via/",
+    "exampleSentence": "Send the completed form via secure email.",
+    "exampleSentences": [
+      "Send the completed form via secure email."
+    ],
+    "status": "new",
+    "createdAt": 1700000000094,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "versus",
+    "meaning": "Against (used in comparisons, sports, or law)",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/versus/",
+    "exampleSentence": "The debate centered on nature versus nurture.",
+    "exampleSentences": [
+      "The debate centered on nature versus nurture."
+    ],
+    "status": "new",
+    "createdAt": 1700000000095,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in favor of",
+    "meaning": "In support of an idea or decision",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in favor of/",
+    "exampleSentence": "The majority voted in favor of the proposal.",
+    "exampleSentences": [
+      "The majority voted in favor of the proposal."
+    ],
+    "status": "new",
+    "createdAt": 1700000000096,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "by way of",
+    "meaning": "Via a route; serving as an explanation/example",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/by way of/",
+    "exampleSentence": "He offered an apology by way of an explanation.",
+    "exampleSentences": [
+      "He offered an apology by way of an explanation."
+    ],
+    "status": "new",
+    "createdAt": 1700000000097,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "as of",
+    "meaning": "Beginning from a particular date or time",
+    "cefrLevel": "B2",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/as of/",
+    "exampleSentence": "As of next Monday, the new policy takes effect.",
+    "exampleSentences": [
+      "As of next Monday, the new policy takes effect."
+    ],
+    "status": "new",
+    "createdAt": 1700000000098,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in lieu of",
+    "meaning": "In substitution for; instead of",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in lieu of/",
+    "exampleSentence": "He took equity in lieu of cash compensation.",
+    "exampleSentences": [
+      "He took equity in lieu of cash compensation."
+    ],
+    "status": "new",
+    "createdAt": 1700000000099,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "by virtue of",
+    "meaning": "Because of or by the authority of",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/by virtue of/",
+    "exampleSentence": "By virtue of his position, he signed the treaty.",
+    "exampleSentences": [
+      "By virtue of his position, he signed the treaty."
+    ],
+    "status": "new",
+    "createdAt": 1700000000100,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "for the sake of",
+    "meaning": "In the interest or benefit of someone/something",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/for the sake of/",
+    "exampleSentence": "They resolved the dispute for the sake of peace.",
+    "exampleSentences": [
+      "They resolved the dispute for the sake of peace."
+    ],
+    "status": "new",
+    "createdAt": 1700000000101,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in light of",
+    "meaning": "Taking newly revealed facts into consideration",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in light of/",
+    "exampleSentence": "In light of recent findings, safety protocols were upgraded.",
+    "exampleSentences": [
+      "In light of recent findings, safety protocols were upgraded."
+    ],
+    "status": "new",
+    "createdAt": 1700000000102,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in view of",
+    "meaning": "Taking into account; considering",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in view of/",
+    "exampleSentence": "In view of current trends, expansion was paused.",
+    "exampleSentences": [
+      "In view of current trends, expansion was paused."
+    ],
+    "status": "new",
+    "createdAt": 1700000000103,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "irrespective of",
+    "meaning": "Regardless of; without taking account of",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/irrespective of/",
+    "exampleSentence": "Assistance is provided irrespective of background.",
+    "exampleSentences": [
+      "Assistance is provided irrespective of background."
+    ],
+    "status": "new",
+    "createdAt": 1700000000104,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "notwithstanding",
+    "meaning": "In spite of; despite",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/notwithstanding/",
+    "exampleSentence": "Notwithstanding the heavy turbulence, the plane landed safely.",
+    "exampleSentences": [
+      "Notwithstanding the heavy turbulence, the plane landed safely."
+    ],
+    "status": "new",
+    "createdAt": 1700000000105,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "pending",
+    "meaning": "Awaiting or until the completion of",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/pending/",
+    "exampleSentence": "He remained on leave pending an internal review.",
+    "exampleSentences": [
+      "He remained on leave pending an internal review."
+    ],
+    "status": "new",
+    "createdAt": 1700000000106,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "subject to",
+    "meaning": "Contingent or conditional upon",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/subject to/",
+    "exampleSentence": "The contract is subject to board approval.",
+    "exampleSentences": [
+      "The contract is subject to board approval."
+    ],
+    "status": "new",
+    "createdAt": 1700000000107,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "unto",
+    "meaning": "Formal or archaic for to/towards",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/unto/",
+    "exampleSentence": "Be faithful unto the end.",
+    "exampleSentences": [
+      "Be faithful unto the end."
+    ],
+    "status": "new",
+    "createdAt": 1700000000108,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "vis-a-vis",
+    "meaning": "In comparison with; in relation to",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/vis-a-vis/",
+    "exampleSentence": "Our currency strengthened vis-a-vis the dollar.",
+    "exampleSentences": [
+      "Our currency strengthened vis-a-vis the dollar."
+    ],
+    "status": "new",
+    "createdAt": 1700000000109,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "apropos of",
+    "meaning": "Concerning; speaking of; in reference to",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/apropos of/",
+    "exampleSentence": "Apropos of your remark, let me clarify the numbers.",
+    "exampleSentences": [
+      "Apropos of your remark, let me clarify the numbers."
+    ],
+    "status": "new",
+    "createdAt": 1700000000110,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in the wake of",
+    "meaning": "Immediately following or as a consequence of",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in the wake of/",
+    "exampleSentence": "Reforms were enacted in the wake of the crisis.",
+    "exampleSentences": [
+      "Reforms were enacted in the wake of the crisis."
+    ],
+    "status": "new",
+    "createdAt": 1700000000111,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "on the part of",
+    "meaning": "Carried out by or characteristic of",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/on the part of/",
+    "exampleSentence": "It represented a mistake on the part of the organizers.",
+    "exampleSentences": [
+      "It represented a mistake on the part of the organizers."
+    ],
+    "status": "new",
+    "createdAt": 1700000000112,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "with reference to",
+    "meaning": "Regarding or in connection with",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/with reference to/",
+    "exampleSentence": "With reference to paragraph three, please clarify your intent.",
+    "exampleSentences": [
+      "With reference to paragraph three, please clarify your intent."
+    ],
+    "status": "new",
+    "createdAt": 1700000000113,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "pursuant to",
+    "meaning": "In accordance with a statute, rule, or legal clause",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/pursuant to/",
+    "exampleSentence": "Pursuant to article 5, notice was formally served.",
+    "exampleSentences": [
+      "Pursuant to article 5, notice was formally served."
+    ],
+    "status": "new",
+    "createdAt": 1700000000114,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in the face of",
+    "meaning": "Confronted by or despite strong adversity",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in the face of/",
+    "exampleSentence": "They showed resilience in the face of daunting odds.",
+    "exampleSentences": [
+      "They showed resilience in the face of daunting odds."
+    ],
+    "status": "new",
+    "createdAt": 1700000000115,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "at the expense of",
+    "meaning": "Resulting in harm or sacrifice to something else",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/at the expense of/",
+    "exampleSentence": "Economic gain must not come at the expense of our environment.",
+    "exampleSentences": [
+      "Economic gain must not come at the expense of our environment."
+    ],
+    "status": "new",
+    "createdAt": 1700000000116,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "for want of",
+    "meaning": "Because of a lack or shortage of",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/for want of/",
+    "exampleSentence": "The investigation stalled for want of sufficient evidence.",
+    "exampleSentences": [
+      "The investigation stalled for want of sufficient evidence."
+    ],
+    "status": "new",
+    "createdAt": 1700000000117,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in excess of",
+    "meaning": "Surpassing or more than",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in excess of/",
+    "exampleSentence": "Donations were in excess of half a million dollars.",
+    "exampleSentences": [
+      "Donations were in excess of half a million dollars."
+    ],
+    "status": "new",
+    "createdAt": 1700000000118,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "barring",
+    "meaning": "Except if there is; unless prevented by",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/barring/",
+    "exampleSentence": "Barring unforeseen delays, we arrive at noon.",
+    "exampleSentences": [
+      "Barring unforeseen delays, we arrive at noon."
+    ],
+    "status": "new",
+    "createdAt": 1700000000119,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "save",
+    "meaning": "Except; other than (formal literary)",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/save/",
+    "exampleSentence": "The library was silent save for the rustle of pages.",
+    "exampleSentences": [
+      "The library was silent save for the rustle of pages."
+    ],
+    "status": "new",
+    "createdAt": 1700000000120,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "in quest of",
+    "meaning": "In search of or pursuing",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/in quest of/",
+    "exampleSentence": "Explorers traveled uncharted lands in quest of gold.",
+    "exampleSentences": [
+      "Explorers traveled uncharted lands in quest of gold."
+    ],
+    "status": "new",
+    "createdAt": 1700000000121,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  },
+  {
+    "word": "at the hands of",
+    "meaning": "Caused or inflicted by someone",
+    "cefrLevel": "C1",
+    "partOfSpeech": "preposition",
+    "pronunciation": "/at the hands of/",
+    "exampleSentence": "The team suffered defeat at the hands of the champions.",
+    "exampleSentences": [
+      "The team suffered defeat at the hands of the champions."
+    ],
+    "status": "new",
+    "createdAt": 1700000000122,
+    "reviewCount": 0,
+    "correctCount": 0,
+    "mistakeCount": 0
+  }
+]
