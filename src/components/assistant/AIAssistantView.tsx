@@ -23,6 +23,7 @@ import { CEFRLevel } from '../../types/vocabulary';
 import { 
   processUserMessageWithGemini,
   saveGeminiKey,
+  getStoredGeminiKey,
   SituationalResult, 
   SituationalWord
 } from '../../services/geminiService';

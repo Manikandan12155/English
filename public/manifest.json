@@ -1,0 +1,26 @@
+{
+  "name": "LexiCraft - English Vocabulary Mastery",
+  "short_name": "LexiCraft",
+  "description": "Master 5,000+ Oxford English vocabulary words, phrases, prepositions and grammar with audio and smart AI recall.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070b14",
+  "theme_color": "#4f46e5",
+  "categories": ["education", "books", "productivity"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
