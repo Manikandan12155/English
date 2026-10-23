@@ -67,7 +67,8 @@ export type ViewScreen =
   | 'quiz' 
   | 'stats' 
   | 'settings'
-  | 'game';
+  | 'game'
+  | 'assistant';
 
 export interface FilterOptions {
   searchQuery: string;

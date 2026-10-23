@@ -4,6 +4,7 @@ import {
   Star, 
   ChevronLeft, 
   ChevronRight, 
+  ChevronDown,
   Play, 
   Pause, 
   Eye, 
@@ -22,8 +23,11 @@ import {
   ArrowUpDown,
   ArrowDownAZ,
   ArrowUpZA,
-  Minimize2
+  Minimize2,
+  Target,
+  Compass
 } from 'lucide-react';
+import { StartFromModal } from './StartFromModal';
 import { useApp } from '../../context/AppContext';
 import { VocabularyWord, WordStatus, CEFRLevel } from '../../types/vocabulary';
 import { speechService } from '../../services/speechService';
@@ -94,16 +98,22 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
     return typeof window !== 'undefined' ? localStorage.getItem(`vocabmaster_last_word_${learningTrack}`) : null;
   });
 
-  const [hideMeaning, setHideMeaning] = useState<boolean>(false);
+  // Collapsible detail sections: Meaning, Synonyms, Antonyms (Initial close by default)
+  const [isMeaningOpen, setIsMeaningOpen] = useState<boolean>(false);
+  const [isSynonymsOpen, setIsSynonymsOpen] = useState<boolean>(false);
+  const [isAntonymsOpen, setIsAntonymsOpen] = useState<boolean>(false);
+
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(false);
   const autoPlayTimerRef = useRef<any>(null);
 
-  // Shuffle, Sort and Fullscreen states
+  // Shuffle, Sort, Alphabet & Start-From states
   const [isShuffled, setIsShuffled] = useState<boolean>(false);
   const [shuffleSeed, setShuffleSeed] = useState<number>(0);
   const [sortOrder, setSortOrder] = useState<'default' | 'az' | 'za'>('default');
   const [isFullscreenCard, setIsFullscreenCard] = useState<boolean>(false);
+  const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
+  const [showStartFromModal, setShowStartFromModal] = useState<boolean>(false);
 
   // Compute level counts
   const levelCounts = React.useMemo(() => {
@@ -114,7 +124,7 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
     return counts;
   }, [words]);
 
-  // Filter words by selected level & status, with Shuffle and Alphabetical Sort
+  // Filter words by selected level, status & alphabet letter, with Shuffle and Alphabetical Sort
   const filteredWords = React.useMemo(() => {
     let list = words;
     if (selectedLevel !== 'ALL') {
@@ -122,6 +132,9 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
     }
     if (selectedStatus !== 'ALL') {
       list = list.filter(w => w.status === selectedStatus);
+    }
+    if (selectedLetter) {
+      list = list.filter(w => (w.word || '').trim().toUpperCase().startsWith(selectedLetter));
     }
 
     if (isShuffled) {
@@ -141,7 +154,7 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
     }
 
     return list;
-  }, [words, selectedLevel, selectedStatus, isShuffled, shuffleSeed, sortOrder]);
+  }, [words, selectedLevel, selectedStatus, selectedLetter, isShuffled, shuffleSeed, sortOrder]);
 
   // Automatically align to the saved word once filteredWords load
   const hasAlignedSavedRef = useRef<boolean>(false);
@@ -179,6 +192,13 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
     }
   }, [currentIndex, activeWord?.word, learningTrack, selectedLevel]);
 
+  // Reset all 3 sections (Meaning, Synonyms, Antonyms) to closed (false) initially on every word change
+  useEffect(() => {
+    setIsMeaningOpen(false);
+    setIsSynonymsOpen(false);
+    setIsAntonymsOpen(false);
+  }, [activeWord?.word]);
+
   // Restore index for selected level when level changes
   const handleLevelChange = (lvl: CEFRLevel | 'ALL') => {
     setSelectedLevel(lvl);
@@ -215,6 +235,74 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
       setCurrentIndex(targetIdx);
       if (addToast) addToast(`Resumed from "${savedWord}" (#${targetIdx + 1})`, 'info');
     }
+  };
+
+  // Start learning from specific alphabet letter
+  const handleSelectLetter = (letter: string, filterOnly: boolean = false) => {
+    if (filterOnly) {
+      setSelectedLetter(letter.toUpperCase());
+      setCurrentIndex(0);
+      if (addToast) addToast(`Filtering words starting with "${letter.toUpperCase()}"`, 'info');
+      return;
+    }
+
+    // Continuous learning: start from the first word of this letter
+    if (selectedLetter !== null) {
+      setSelectedLetter(null);
+    }
+    if (isShuffled) {
+      setIsShuffled(false);
+    }
+
+    const targetIdx = filteredWords.findIndex(w => (w.word || '').trim().toUpperCase().startsWith(letter.toUpperCase()));
+    if (targetIdx >= 0) {
+      setCurrentIndex(targetIdx);
+      const targetWord = filteredWords[targetIdx];
+      if (addToast) {
+        addToast(`Started from letter "${letter.toUpperCase()}" → "${targetWord.word}" (#${targetIdx + 1})`, 'info');
+      }
+    } else {
+      const globalIdx = words.findIndex(w => (w.word || '').trim().toUpperCase().startsWith(letter.toUpperCase()));
+      if (globalIdx >= 0) {
+        setSelectedLevel('ALL');
+        setTimeout(() => {
+          const newIdx = words.findIndex(w => (w.word || '').trim().toUpperCase().startsWith(letter.toUpperCase()));
+          if (newIdx >= 0) setCurrentIndex(newIdx);
+        }, 50);
+        if (addToast) {
+          addToast(`Switched to ALL levels & started from letter "${letter.toUpperCase()}"`, 'info');
+        }
+      } else {
+        if (addToast) addToast(`No words found starting with "${letter.toUpperCase()}"`, 'warning');
+      }
+    }
+  };
+
+  // Start learning from specific word
+  const handleSelectWord = (word: VocabularyWord, _index: number) => {
+    if (isShuffled) {
+      setIsShuffled(false);
+    }
+
+    const currentIdx = filteredWords.findIndex(w => w.id === word.id || w.word.toLowerCase() === word.word.toLowerCase());
+    if (currentIdx >= 0) {
+      setCurrentIndex(currentIdx);
+      if (addToast) addToast(`Started learning from "${word.word}" (#${currentIdx + 1})`, 'info');
+      return;
+    }
+
+    if (selectedLetter) setSelectedLetter(null);
+    if (selectedLevel !== 'ALL' && word.cefrLevel !== selectedLevel) {
+      setSelectedLevel(word.cefrLevel);
+    }
+
+    setTimeout(() => {
+      const idx = words.findIndex(w => w.id === word.id || w.word.toLowerCase() === word.word.toLowerCase());
+      if (idx >= 0) {
+        setCurrentIndex(idx);
+        if (addToast) addToast(`Started learning from "${word.word}" (#${idx + 1})`, 'info');
+      }
+    }, 50);
   };
 
   // Live Dictionary API for active word
@@ -321,6 +409,7 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
       return;
     }
     setShowAIMeaning(true);
+    setIsMeaningOpen(true);
     if (!aiMeaning) {
       setLoadingAI(true);
       try {
@@ -434,7 +523,7 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
   };
 
   return (
-    <div className="max-w-3xl mx-auto space-y-2.5 sm:space-y-3 pb-28 lg:pb-8 pt-0.5">
+    <div className="max-w-3xl mx-auto space-y-2 sm:space-y-2.5 pb-2 sm:pb-4 pt-0.5">
       
       {/* Unified Learning Header & Level Bar (Mobile Optimized) */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl p-3 sm:p-4 border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-2">
@@ -455,9 +544,13 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
-            <span className="text-[11px] text-slate-500 dark:text-slate-400 tabular-nums font-bold">
+            <button
+              onClick={() => setShowStartFromModal(true)}
+              title="Click to jump to any word or alphabet letter"
+              className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 tabular-nums font-bold underline decoration-dotted underline-offset-2 transition"
+            >
               {totalWords > 0 ? `${currentIndex + 1} / ${totalWords}` : '0 words'}
-            </span>
+            </button>
             <button
               onClick={onOpenAudioMode}
               title="Launch Immersive Audio Mode"
@@ -518,7 +611,7 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
       ) : (
         <>
           {/* Top Navigation & Auto Play Controls - Right below Level Bar */}
-          <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm gap-2">
+          <div className="flex items-center justify-between p-1.5 sm:p-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm gap-2">
             <button
               onClick={handlePrevious}
               disabled={currentIndex === 0}
@@ -575,10 +668,10 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
           </div>
 
           {/* Main Vocabulary Card (Panels 3 & 8) */}
-          <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-4 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-sm relative overflow-hidden">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm relative overflow-hidden">
         
         {/* Card Header: Level, POS, Star, Expand */}
-        <div className="flex items-center justify-between mb-3 sm:mb-4">
+        <div className="flex items-center justify-between mb-2 sm:mb-3">
           <div className="flex items-center gap-2">
             <span className={`text-xs font-extrabold px-2.5 py-0.5 rounded-full border ${levelColorMap[activeWord.cefrLevel]}`}>
               {activeWord.cefrLevel}
@@ -635,12 +728,36 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
               )}
             </button>
 
+            {/* 3. Start From Word or Alphabet Button */}
             <button
-              onClick={() => setHideMeaning(prev => !prev)}
-              title={hideMeaning ? "Reveal Meaning" : "Hide Meaning for Recall"}
-              className="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              onClick={() => setShowStartFromModal(true)}
+              title="Set starting word or alphabet letter"
+              className="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
             >
-              {hideMeaning ? <EyeOff className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-500" /> : <Eye className="w-4 h-4 sm:w-5 sm:h-5" />}
+              <Target className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
+
+            {/* Toggle Show/Hide All Details (Meaning, Synonyms, Antonyms) */}
+            <button
+              onClick={() => {
+                const anyOpen = isMeaningOpen || isSynonymsOpen || isAntonymsOpen;
+                const next = !anyOpen;
+                setIsMeaningOpen(next);
+                setIsSynonymsOpen(next);
+                setIsAntonymsOpen(next);
+              }}
+              title={(isMeaningOpen || isSynonymsOpen || isAntonymsOpen) ? "Hide Details (Active Recall)" : "Reveal All Details (Meaning, Synonyms, Antonyms)"}
+              className={`p-1.5 sm:p-2 rounded-xl transition ${
+                (isMeaningOpen || isSynonymsOpen || isAntonymsOpen)
+                  ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60'
+                  : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
+            >
+              {(isMeaningOpen || isSynonymsOpen || isAntonymsOpen) ? (
+                <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-500" />
+              ) : (
+                <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />
+              )}
             </button>
             <button
               onClick={() => activeWord.id && handleToggleFavorite(activeWord.id)}
@@ -665,8 +782,8 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
         </div>
 
         {/* Word + Audio Section */}
-        <div className="text-center my-3 sm:my-5">
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-1.5">
+        <div className="text-center my-1.5 sm:my-2.5">
+          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
             {activeWord.word}
           </h1>
 
@@ -689,16 +806,31 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
         </div>
 
         {/* Meaning & Example Content */}
-        <div className="space-y-2.5 sm:space-y-4 my-3 sm:my-5">
+        <div className="space-y-2 sm:space-y-2.5 my-2 sm:my-3">
           
-          {/* Meaning Block */}
-          <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-800/80 transition-all space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider block">
-                Meaning
-              </span>
-              <div className="flex items-center gap-1.5">
-                {/* ✨ AI Meaning Button */}
+          {/* 1. Meaning Block (Collapsible - Initial closed by default) */}
+          <div className="rounded-xl sm:rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-800/80 transition-all overflow-hidden">
+            {/* Header: Click to open/close */}
+            <div 
+              onClick={() => setIsMeaningOpen(prev => !prev)}
+              className="p-3 sm:p-4 flex items-center justify-between cursor-pointer select-none hover:bg-slate-100/60 dark:hover:bg-slate-800/90 transition"
+            >
+              <div className="flex items-center gap-2">
+                <span className={`p-1 rounded-lg bg-slate-200/70 dark:bg-slate-700/70 text-slate-600 dark:text-slate-300 transition-transform duration-200 ${isMeaningOpen ? 'rotate-180' : ''}`}>
+                  <ChevronDown className="w-3.5 h-3.5" />
+                </span>
+                <span className="text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  Meaning
+                </span>
+                {!isMeaningOpen && (
+                  <span className="text-[11px] text-indigo-600 dark:text-indigo-400 font-semibold ml-1 animate-pulse">
+                    • Tap to reveal
+                  </span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-1.5" onClick={e => e.stopPropagation()}>
+                {/*AI Meaning Button */}
                 <button
                   onClick={handleToggleAIMeaning}
                   className={`text-[10px] sm:text-[11px] font-bold flex items-center gap-1 px-2.5 py-1 rounded-lg transition shadow-sm ${
@@ -709,20 +841,14 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
                   title="Explain this word in super simple terms using Gemini AI"
                 >
                   <Sparkles className={`w-3 h-3 ${loadingAI ? 'animate-spin' : 'text-amber-500'}`} />
-                  <span>{loadingAI ? 'AI Explaining...' : '✨ AI Meaning'}</span>
+                  <span>{loadingAI ? 'AI Explaining...' : ' AI Meaning'}</span>
                 </button>
               </div>
             </div>
 
-            {hideMeaning ? (
-              <div 
-                onClick={() => setHideMeaning(false)}
-                className="py-2 text-center cursor-pointer text-indigo-600 dark:text-indigo-400 font-semibold text-xs sm:text-sm hover:underline"
-              >
-                Click to reveal meaning (Test recall)
-              </div>
-            ) : (
-              <div className="space-y-1.5">
+            {/* Meaning Body (Visible only when isMeaningOpen is true) */}
+            {isMeaningOpen && (
+              <div className="px-3.5 sm:px-4 pb-3.5 sm:pb-4 pt-1 border-t border-slate-200/40 dark:border-slate-800/60 space-y-2 animate-fade-in">
                 {liveCardData?.definitions && liveCardData.definitions.length > 0 ? (
                   <div className="space-y-1">
                     <div className="flex items-start justify-between gap-1.5">
@@ -821,57 +947,104 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
             )}
           </div>
 
-          {/* 4. Synonyms & Antonyms against each word */}
-          {(synonymsList.length > 0 || antonymsList.length > 0) && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 animate-fade-in">
-              {synonymsList.length > 0 && (
-                <div className="p-3 rounded-xl sm:rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-800/50 space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
-                      Synonyms (Same Meaning)
-                    </span>
-                    <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">
-                      {synonymsList.length}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {synonymsList.map(syn => (
-                      <span
-                        key={syn}
-                        className="px-2.5 py-0.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/60 text-emerald-900 dark:text-emerald-100 font-bold text-xs border border-emerald-300/70 dark:border-emerald-700 shadow-xs"
-                      >
-                        {syn}
-                      </span>
-                    ))}
-                  </div>
+          {/* 2 & 3. Synonyms & Antonyms (Collapsible - Always visible on card, initial closed by default) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 animate-fade-in">
+            {/* Synonyms Card */}
+            <div className="rounded-xl sm:rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-800/50 overflow-hidden transition-all">
+              {/* Header: Click to toggle */}
+              <div
+                onClick={() => setIsSynonymsOpen(prev => !prev)}
+                className="p-3 flex items-center justify-between cursor-pointer select-none hover:bg-emerald-100/50 dark:hover:bg-emerald-900/30 transition"
+              >
+                <div className="flex items-center gap-1.5">
+                  <span className={`p-1 rounded-lg bg-emerald-200/60 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200 transition-transform duration-200 ${isSynonymsOpen ? 'rotate-180' : ''}`}>
+                    <ChevronDown className="w-3 h-3" />
+                  </span>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
+                    Synonyms (Same Meaning)
+                  </span>
                 </div>
-              )}
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-200/70 dark:bg-emerald-900/70 text-emerald-800 dark:text-emerald-200">
+                    {synonymsList.length}
+                  </span>
+                  <span className="text-[10px] text-emerald-700 dark:text-emerald-300 font-semibold">
+                    {isSynonymsOpen ? 'Hide' : 'Show'}
+                  </span>
+                </div>
+              </div>
 
-              {antonymsList.length > 0 && (
-                <div className="p-3 rounded-xl sm:rounded-2xl bg-rose-50/70 dark:bg-rose-950/30 border border-rose-200/70 dark:border-rose-800/50 space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-black uppercase tracking-wider text-rose-800 dark:text-rose-300">
-                      Antonyms (Opposite Meaning)
-                    </span>
-                    <span className="text-[10px] text-rose-600 dark:text-rose-400 font-bold">
-                      {antonymsList.length}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {antonymsList.map(ant => (
-                      <span
-                        key={ant}
-                        className="px-2.5 py-0.5 rounded-lg bg-rose-100 dark:bg-rose-900/60 text-rose-900 dark:text-rose-100 font-bold text-xs border border-rose-300/70 dark:border-rose-700 shadow-xs"
-                      >
-                        {ant}
-                      </span>
-                    ))}
-                  </div>
+              {/* Body: Visible only when isSynonymsOpen is true */}
+              {isSynonymsOpen && (
+                <div className="px-3 pb-3 pt-1 border-t border-emerald-200/50 dark:border-emerald-900/50 animate-fade-in">
+                  {synonymsList.length > 0 ? (
+                    <div className="flex flex-wrap gap-1.5">
+                      {synonymsList.map(syn => (
+                        <span
+                          key={syn}
+                          className="px-2.5 py-0.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/60 text-emerald-900 dark:text-emerald-100 font-bold text-xs border border-emerald-300/70 dark:border-emerald-700 shadow-xs"
+                        >
+                          {syn}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-xs text-emerald-800/80 dark:text-emerald-300/80 italic py-1">
+                      No direct synonyms recorded for this word.
+                    </p>
+                  )}
                 </div>
               )}
             </div>
-          )}
 
+            {/* Antonyms Card */}
+            <div className="rounded-xl sm:rounded-2xl bg-rose-50/70 dark:bg-rose-950/30 border border-rose-200/70 dark:border-rose-800/50 overflow-hidden transition-all">
+              {/* Header: Click to toggle */}
+              <div
+                onClick={() => setIsAntonymsOpen(prev => !prev)}
+                className="p-3 flex items-center justify-between cursor-pointer select-none hover:bg-rose-100/50 dark:hover:bg-rose-900/30 transition"
+              >
+                <div className="flex items-center gap-1.5">
+                  <span className={`p-1 rounded-lg bg-rose-200/60 dark:bg-rose-900/60 text-rose-800 dark:text-rose-200 transition-transform duration-200 ${isAntonymsOpen ? 'rotate-180' : ''}`}>
+                    <ChevronDown className="w-3 h-3" />
+                  </span>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-rose-800 dark:text-rose-300">
+                    Antonyms (Opposite Meaning)
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-rose-200/70 dark:bg-rose-900/70 text-rose-800 dark:text-rose-200">
+                    {antonymsList.length}
+                  </span>
+                  <span className="text-[10px] text-rose-700 dark:text-rose-300 font-semibold">
+                    {isAntonymsOpen ? 'Hide' : 'Show'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Body: Visible only when isAntonymsOpen is true */}
+              {isAntonymsOpen && (
+                <div className="px-3 pb-3 pt-1 border-t border-rose-200/50 dark:border-rose-900/50 animate-fade-in">
+                  {antonymsList.length > 0 ? (
+                    <div className="flex flex-wrap gap-1.5">
+                      {antonymsList.map(ant => (
+                        <span
+                          key={ant}
+                          className="px-2.5 py-0.5 rounded-lg bg-rose-100 dark:bg-rose-900/60 text-rose-900 dark:text-rose-100 font-bold text-xs border border-rose-300/70 dark:border-rose-700 shadow-xs"
+                        >
+                          {ant}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-xs text-rose-800/80 dark:text-rose-300/80 italic py-1">
+                      No direct antonyms recorded for this word.
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Keyboard shortcut hint banner (hidden on touch devices) */}
@@ -1091,6 +1264,19 @@ export const StudyMode: React.FC<StudyModeProps> = ({ onOpenDetails, onOpenAudio
             </button>
           </div>
         </div>
+      )}
+
+      {/* Start From Word / Alphabet Modal */}
+      {showStartFromModal && (
+        <StartFromModal
+          words={words}
+          currentIndex={currentIndex}
+          selectedLetterFilter={selectedLetter}
+          onSelectWord={handleSelectWord}
+          onSelectLetter={handleSelectLetter}
+          onClearLetterFilter={() => setSelectedLetter(null)}
+          onClose={() => setShowStartFromModal(false)}
+        />
       )}
 
     </div>

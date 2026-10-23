@@ -10,9 +10,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
-        name: 'VocabMaster 5000',
-        short_name: 'VocabMaster',
-        description: '5,000 English vocabulary words (A1 - B2) with smart categorization and audio pronunciation',
+        name: 'LexiCraft — Vocabulary Mastery',
+        short_name: 'LexiCraft',
+        description: '5,000+ English vocabulary words, phrases, prepositions and grammar with audio and AI',
         theme_color: '#4f46e5',
         background_color: '#0f172a',
         display: 'standalone',

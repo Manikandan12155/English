@@ -216,7 +216,7 @@ export const EditWordModal: React.FC<EditWordModalProps> = ({ wordToEdit, onClos
               className="w-full py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 transition flex items-center justify-center gap-2"
             >
               <Save className="w-4 h-4" />
-              <span>{wordToEdit ? 'Save Changes' : 'Add Word to VocabMaster'}</span>
+              <span>{wordToEdit ? 'Save Changes' : 'Add Word to LexiCraft'}</span>
             </button>
           </div>
 

@@ -29,13 +29,13 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onClose }) => 
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md animate-fade-in text-white">
       <div className="max-w-md w-full p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl flex flex-col items-center text-center">
         
-        {/* VocabMaster Logo (Panel 1) */}
+        {/* LexiCraft Logo */}
         <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center shadow-2xl shadow-indigo-500/40 my-4 transform hover:rotate-3 transition">
-          <span className="text-white font-black text-4xl">V</span>
+          <span className="text-white font-black text-4xl">L</span>
         </div>
 
         <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight mt-2">
-          VocabMaster 5000
+          LexiCraft
         </h1>
         <p className="text-xs text-indigo-400 font-semibold tracking-wide uppercase mt-1">
           Your personal vocabulary companion

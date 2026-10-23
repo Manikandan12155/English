@@ -31,14 +31,250 @@
   }
 
   body {
-    @apply antialiased bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200;
+    @apply antialiased bg-slate-50 text-slate-800 dark:bg-[#070b14] dark:text-slate-100 transition-colors duration-200;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
   }
 
   /* Anti-slop rule: Tabular numbers everywhere numbers update or display */
   .tabular-nums, table, [data-stat], .stat-number {
     font-variant-numeric: tabular-nums;
   }
+}
+
+/* ==========================================================================
+   iPhone / iOS Liquid Glass Design System
+   ========================================================================== */
+
+/* Ambient iPhone Aurora Mesh Layer */
+.ios-mesh-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ios-mesh-orb-1 {
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 550px;
+  height: 550px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(168, 85, 247, 0.12) 60%, transparent 80%);
+  filter: blur(75px);
+  animation: iosFloat 18s ease-in-out infinite alternate;
+}
+
+.ios-mesh-orb-2 {
+  position: absolute;
+  top: 15%;
+  right: -8%;
+  width: 520px;
+  height: 520px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.22) 0%, rgba(244, 63, 94, 0.1) 60%, transparent 80%);
+  filter: blur(85px);
+  animation: iosFloatReverse 22s ease-in-out infinite alternate;
+}
+
+.ios-mesh-orb-3 {
+  position: absolute;
+  bottom: 5%;
+  left: 10%;
+  width: 580px;
+  height: 580px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.22) 0%, rgba(99, 102, 241, 0.12) 60%, transparent 80%);
+  filter: blur(90px);
+  animation: iosFloat 20s ease-in-out infinite alternate;
+}
+
+.ios-mesh-orb-4 {
+  position: absolute;
+  bottom: -15%;
+  right: 5%;
+  width: 600px;
+  height: 600px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.22) 0%, rgba(139, 92, 246, 0.08) 60%, transparent 80%);
+  filter: blur(85px);
+}
+
+.dark .ios-mesh-orb-1 {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.15) 60%, transparent 80%);
+  filter: blur(95px);
+}
+.dark .ios-mesh-orb-2 {
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, rgba(244, 63, 94, 0.12) 60%, transparent 80%);
+  filter: blur(100px);
+}
+.dark .ios-mesh-orb-3 {
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.25) 0%, rgba(99, 102, 241, 0.15) 60%, transparent 80%);
+  filter: blur(105px);
+}
+.dark .ios-mesh-orb-4 {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(139, 92, 246, 0.1) 60%, transparent 80%);
+  filter: blur(100px);
+}
+
+@keyframes iosFloat {
+  0% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(30px, 40px) scale(1.08); }
+  100% { transform: translate(-20px, 25px) scale(0.96); }
+}
+
+@keyframes iosFloatReverse {
+  0% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(-40px, -30px) scale(1.06); }
+  100% { transform: translate(25px, -15px) scale(0.95); }
+}
+
+/* Primary iOS Glass Card (iPhone squircle card with specular top highlight) */
+.ios-glass-card {
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 16px 36px -12px rgba(15, 23, 42, 0.08),
+    0 2px 6px 0 rgba(15, 23, 42, 0.02),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95);
+  border-radius: 28px;
+}
+
+.dark .ios-glass-card {
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    0 20px 48px -12px rgba(0, 0, 0, 0.7),
+    0 2px 8px 0 rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+/* Secondary / Sub Card Glass */
+.ios-glass-subtle {
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  border-radius: 22px;
+}
+
+.dark .ios-glass-subtle {
+  background: rgba(30, 41, 59, 0.52);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Floating iPhone Dock */
+.ios-dock {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(36px) saturate(210%);
+  -webkit-backdrop-filter: blur(36px) saturate(210%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 20px 45px -10px rgba(15, 23, 42, 0.16),
+    0 4px 14px 0 rgba(15, 23, 42, 0.06),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  border-radius: 9999px;
+}
+
+.dark .ios-dock {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(36px) saturate(210%);
+  -webkit-backdrop-filter: blur(36px) saturate(210%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 24px 55px -10px rgba(0, 0, 0, 0.8),
+    0 4px 18px 0 rgba(0, 0, 0, 0.5),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Header Glass */
+.ios-header-glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 20px -8px rgba(15, 23, 42, 0.05);
+}
+
+.dark .ios-header-glass {
+  background: rgba(7, 11, 20, 0.75);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 25px -8px rgba(0, 0, 0, 0.5);
+}
+
+/* iPhone Glass Button / Touch Interactive */
+.ios-glass-btn {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ios-glass-btn:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+.ios-glass-btn:active, .ios-press:active {
+  transform: scale(0.96);
+  opacity: 0.92;
+}
+
+.dark .ios-glass-btn {
+  background: rgba(30, 41, 59, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
+.dark .ios-glass-btn:hover {
+  background: rgba(51, 65, 85, 0.8);
+}
+
+/* Glass Pill Accent */
+.ios-glass-pill {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.85);
+  border-radius: 9999px;
+}
+
+.dark .ios-glass-pill {
+  background: rgba(30, 41, 59, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+/* iOS Specular Upper Shine */
+.ios-gloss {
+  position: relative;
+  overflow: hidden;
+}
+.ios-gloss::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  border-radius: inherit;
 }
 
 /* Custom Scrollbars */
@@ -88,3 +324,4 @@
 .animate-pulse-subtle {
   animation: pulseSubtle 2.5s infinite ease-in-out;
 }
+

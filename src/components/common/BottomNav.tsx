@@ -21,24 +21,33 @@ export const BottomNav: React.FC = () => {
   ];
 
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 px-2 py-1.5 flex justify-around items-center">
-      {tabs.map(tab => {
-        const isActive = currentScreen === tab.id;
-        return (
-          <button
-            key={tab.id}
-            onClick={() => setCurrentScreen(tab.id)}
-            className={`flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all ${
-              isActive
-                ? 'text-indigo-600 dark:text-indigo-400 font-bold scale-105'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-medium'
-            }`}
-          >
-            {tab.icon}
-            <span className="text-[10px] mt-0.5 tracking-tight">{tab.label}</span>
-          </button>
-        );
-      })}
-    </nav>
+    <div className="lg:hidden fixed bottom-3 left-3 right-3 sm:left-auto sm:right-auto sm:w-[440px] sm:left-1/2 sm:-translate-x-1/2 z-40">
+      <nav className="ios-dock px-2 py-1.5 flex justify-around items-center relative">
+        {tabs.map(tab => {
+          const isActive = currentScreen === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setCurrentScreen(tab.id)}
+              className={`flex flex-col items-center justify-center py-1.5 px-3 rounded-2xl transition-all duration-200 ios-press relative ${
+                isActive
+                  ? 'text-indigo-600 dark:text-indigo-300 font-extrabold scale-105 ios-glass-btn shadow-xs'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium'
+              }`}
+            >
+              <div className="relative">
+                {tab.icon}
+                {isActive && (
+                  <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400 shadow-xs shadow-indigo-500" />
+                )}
+              </div>
+              <span className="text-[10px] mt-0.5 tracking-tight font-semibold">{tab.label}</span>
+            </button>
+          );
+        })}
+      </nav>
+      {/* iPhone Home Bar Touch Indicator */}
+      <div className="w-28 h-1 bg-slate-400/30 dark:bg-slate-400/25 rounded-full mx-auto mt-1.5 pointer-events-none" />
+    </div>
   );
 };

@@ -18,7 +18,7 @@ import { AutoPlayModal } from './components/study/AutoPlayModal';
 import { SettingsModal } from './components/settings/SettingsModal';
 import { OnboardingModal } from './components/onboarding/OnboardingModal';
 import { TrackSelectorPortal } from './components/portal/TrackSelectorPortal';
-import { AIGameView } from './components/game/AIGameView';
+import { AIAssistantView } from './components/assistant/AIAssistantView';
 import { VocabularyWord, WordStatus } from './types/vocabulary';
 
 export const AppContent: React.FC = () => {
@@ -60,10 +60,10 @@ export const AppContent: React.FC = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100">
         <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center shadow-xl animate-pulse mb-4">
-          <span className="text-white font-black text-2xl">V</span>
+          <span className="text-white font-black text-2xl">L</span>
         </div>
         <p className="font-bold text-sm tracking-tight text-slate-600 dark:text-slate-300">
-          Loading VocabMaster 5000...
+          Loading LexiCraft...
         </p>
       </div>
     );
@@ -79,8 +79,25 @@ export const AppContent: React.FC = () => {
     );
   }
 
+  // Dedicated Full-Screen AI Assistant (Authentic ChatGPT edge-to-edge view)
+  if (currentScreen === 'game' || currentScreen === 'assistant') {
+    return (
+      <div className="h-screen w-screen bg-[#212121] text-slate-100 flex flex-col overflow-hidden">
+        <AIAssistantView onBack={() => setCurrentScreen('dashboard')} />
+        <ToastContainer />
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#070b14] text-slate-900 dark:text-slate-100 transition-colors relative selection:bg-indigo-500 selection:text-white">
+      {/* iPhone Ambient Liquid Mesh Background */}
+      <div className="ios-mesh-bg" aria-hidden="true">
+        <div className="ios-mesh-orb-1" />
+        <div className="ios-mesh-orb-2" />
+        <div className="ios-mesh-orb-3" />
+        <div className="ios-mesh-orb-4" />
+      </div>
       
       {/* Top Navbar */}
       <Navbar 
@@ -95,7 +112,7 @@ export const AppContent: React.FC = () => {
         />
 
         {/* Main Content Area */}
-        <main className="flex-1 px-3 py-2.5 sm:p-6 pb-24 sm:pb-8 min-w-0">
+        <main className="flex-1 px-3 py-2 sm:px-6 sm:py-3 pb-16 sm:pb-4 lg:pb-6 min-w-0">
           <div className="max-w-5xl mx-auto">
           {currentScreen === 'dashboard' && (
             <HomeDashboard
@@ -132,10 +149,6 @@ export const AppContent: React.FC = () => {
             <StatisticsView
               onOpenDailyGoalModal={() => setShowSettingsModal(true)}
             />
-          )}
-
-          {currentScreen === 'game' && (
-            <AIGameView onBack={() => setCurrentScreen('portal')} />
           )}
           </div>
         </main>

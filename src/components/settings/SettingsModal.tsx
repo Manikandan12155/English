@@ -225,7 +225,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ onClose }) => {
 
           {/* System info */}
           <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/40 text-[11px] text-slate-400 space-y-1">
-            <p className="font-semibold text-slate-600 dark:text-slate-300">VocabMaster 5000 PWA v1.0</p>
+            <p className="font-semibold text-slate-600 dark:text-slate-300">LexiCraft PWA v1.0</p>
             <p>100% Offline Capable • Local IndexedDB (Dexie) • Web Speech Audio</p>
           </div>
 

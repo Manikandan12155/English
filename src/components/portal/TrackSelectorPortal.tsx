@@ -36,11 +36,11 @@ export const TrackSelectorPortal: React.FC<TrackSelectorPortalProps> = ({ onSele
           </div>
           
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
-            VocabMaster <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">5000</span>
+            Lexi<span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Craft</span>
           </h1>
           
           <p className="text-slate-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
-            Choose your learning track to get started. You can return here anytime by clicking the VocabMaster logo.
+            Choose your learning track to get started. You can return here anytime by clicking the LexiCraft logo.
           </p>
         </div>
 
@@ -267,41 +267,41 @@ export const TrackSelectorPortal: React.FC<TrackSelectorPortalProps> = ({ onSele
             </div>
           </div>
 
-          {/* Card 6: AI Games */}
+          {/* Card 6: AI Assistant */}
           <div 
             onClick={() => setCurrentScreen('game')}
-            className="group relative p-5 rounded-3xl bg-slate-900/70 hover:bg-slate-800/80 border transition-all duration-300 cursor-pointer shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 backdrop-blur-xl flex flex-col justify-between border-slate-800 hover:border-cyan-500/50"
+            className="group relative p-5 rounded-3xl bg-slate-900/70 hover:bg-slate-800/80 border transition-all duration-300 cursor-pointer shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1 backdrop-blur-xl flex flex-col justify-between border-slate-800 hover:border-indigo-500/50"
           >
             <div>
               <div className="flex items-start justify-between mb-4">
-                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform">
-                  <Gamepad2 className="w-5 h-5" />
+                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
+                  <Sparkles className="w-5 h-5" />
                 </div>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                  AI Arena
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  Smart Context
                 </span>
               </div>
 
-              <h2 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
-                AI Games
+              <h2 className="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">
+                AI Assistant
               </h2>
               <p className="text-slate-400 text-xs mt-1.5 leading-relaxed min-h-[42px]">
-                Mystery Word, Synonym Duels & Grammar Detective challenges with AI.
+                Type any situation (Tech Interview, Travel, Health, Meetings) to curate & filter tailored vocabulary with flashcards.
               </p>
 
               <div className="mt-4 pt-3 border-t border-slate-800/80 flex flex-wrap gap-1.5 text-[10px] text-slate-300">
                 <span className="flex items-center gap-1 bg-slate-800/60 px-2 py-0.5 rounded-md">
-                  <Zap className="w-3 h-3 text-cyan-400" /> 3 Modes
+                  <Zap className="w-3 h-3 text-indigo-400" /> Situation Based
                 </span>
                 <span className="flex items-center gap-1 bg-slate-800/60 px-2 py-0.5 rounded-md">
-                  <Sparkles className="w-3 h-3 text-cyan-400" /> AI Powered
+                  <Sparkles className="w-3 h-3 text-indigo-400" /> Smart Filter
                 </span>
               </div>
             </div>
 
-            <div className="mt-4 flex items-center justify-between text-cyan-400 font-bold text-xs group-hover:translate-x-0.5 transition-transform">
-              <span>Play Games</span>
-              <div className="w-6 h-6 rounded-full bg-cyan-500/20 flex items-center justify-center group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+            <div className="mt-4 flex items-center justify-between text-indigo-400 font-bold text-xs group-hover:translate-x-0.5 transition-transform">
+              <span>Open AI Assistant</span>
+              <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center group-hover:bg-indigo-500 group-hover:text-white transition-colors">
                 <ArrowRight className="w-3.5 h-3.5" />
               </div>
             </div>

@@ -14,8 +14,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSettings }) => {
   const { isDarkMode, toggleDarkMode, setCurrentScreen, learningTrack } = useApp();
 
   return (
-    <header className="sticky top-0 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
-      <div className="w-full px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
+    <header className="sticky top-0 z-30 ios-header-glass transition-colors">
+      <div className="w-full px-3.5 sm:px-6 h-16 flex items-center justify-between gap-2 max-w-7xl mx-auto">
         
         {/* Brand / Logo - Click takes to Home Track Selection Portal */}
         <div 
@@ -23,13 +23,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSettings }) => {
           className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group select-none shrink-0"
           title="Click to go to Home Track Selection"
         >
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
-            <span className="text-white font-extrabold text-lg sm:text-xl tracking-tight">V</span>
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-all duration-300 ios-gloss border border-white/30">
+            <span className="text-white font-extrabold text-lg sm:text-xl tracking-tight drop-shadow-sm">L</span>
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight">VocabMaster</span>
-              <span className="text-[10px] sm:text-xs font-semibold px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 dark:bg-indigo-900/60 dark:text-indigo-300">
+              <span className="font-extrabold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight">LexiCraft</span>
+              <span className="text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full ios-glass-subtle text-indigo-600 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-500/30">
                 {learningTrack === 'grammar' ? 'Grammar' : learningTrack === 'conjunctions' ? 'Conjunctions' : learningTrack === 'prepositions' ? 'Prepositions' : learningTrack === 'phrases' ? 'Phrases' : '5000'}
               </span>
             </div>
@@ -39,25 +39,34 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSettings }) => {
           </div>
         </div>
 
+        {/* Dynamic Island Style Capsule (iPhone look) */}
+        <div 
+          onClick={() => setCurrentScreen('portal')}
+          className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full ios-glass-subtle border border-white/60 dark:border-white/10 text-xs font-semibold text-slate-600 dark:text-slate-300 shadow-xs cursor-pointer hover:scale-102 transition"
+        >
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-[11px] font-bold">iOS Liquid Glass Edition</span>
+        </div>
+
         {/* Right Actions */}
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
 
           {/* Dark / Light Toggle */}
           <button
             onClick={toggleDarkMode}
             title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+            className="p-2 sm:p-2.5 rounded-xl ios-glass-btn text-slate-600 dark:text-slate-300"
           >
-            {isDarkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-600" />}
+            {isDarkMode ? <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5 text-slate-700" />}
           </button>
 
           {/* Settings gear */}
           <button
             onClick={onOpenSettings}
             title="Settings"
-            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+            className="p-2 sm:p-2.5 rounded-xl ios-glass-btn text-slate-600 dark:text-slate-300"
           >
-            <Settings className="w-5 h-5" />
+            <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
 
         </div>

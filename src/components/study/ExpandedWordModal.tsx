@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  X, 
-  Volume2, 
-  Star, 
-  CheckCircle, 
-  HelpCircle, 
+import {
+  X,
+  Volume2,
+  Star,
+  CheckCircle,
+  HelpCircle,
   XCircle,
   BookOpen,
   List,
@@ -27,10 +27,10 @@ interface ExpandedWordModalProps {
   onStatusChange: (status: WordStatus) => void;
 }
 
-export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({ 
-  word, 
-  onClose, 
-  onStatusChange 
+export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
+  word,
+  onClose,
+  onStatusChange
 }) => {
   const { handleToggleFavorite, userStats } = useApp();
   const [activeTab, setActiveTab] = useState<'meaning' | 'examples' | 'related' | 'notes'>('meaning');
@@ -55,8 +55,8 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
     setLoadingAI(true);
     try {
       const res = await explainWordWithGemini(
-        word.word, 
-        word.cefrLevel, 
+        word.word,
+        word.cefrLevel,
         word.partOfSpeech,
         undefined,
         forceRefresh
@@ -149,14 +149,14 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
     });
   };
 
-  const exampleList = word.exampleSentences && word.exampleSentences.length > 0 
-    ? word.exampleSentences 
+  const exampleList = word.exampleSentences && word.exampleSentences.length > 0
+    ? word.exampleSentences
     : (word.exampleSentence ? [word.exampleSentence] : ['No example sentences available.']);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
       <div className="bg-white dark:bg-slate-900 rounded-3xl max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200/80 dark:border-slate-800 overflow-hidden">
-        
+
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -171,9 +171,8 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={() => word.id && handleToggleFavorite(word.id)}
-              className={`p-2 rounded-xl transition ${
-                word.isFavorite ? 'text-amber-400 fill-amber-400' : 'text-slate-400 hover:text-amber-400'
-              }`}
+              className={`p-2 rounded-xl transition ${word.isFavorite ? 'text-amber-400 fill-amber-400' : 'text-slate-400 hover:text-amber-400'
+                }`}
             >
               <Star className={`w-5 h-5 ${word.isFavorite ? 'fill-current' : ''}`} />
             </button>
@@ -207,11 +206,10 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
           <div className="flex border-b border-slate-200 dark:border-slate-800 mt-5 -mb-4 justify-around text-xs font-bold">
             <button
               onClick={() => setActiveTab('meaning')}
-              className={`pb-3 px-2 transition border-b-2 flex items-center gap-1.5 ${
-                activeTab === 'meaning'
+              className={`pb-3 px-2 transition border-b-2 flex items-center gap-1.5 ${activeTab === 'meaning'
                   ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400'
                   : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
-              }`}
+                }`}
             >
               <BookOpen className="w-3.5 h-3.5" />
               <span>Meaning</span>
@@ -219,11 +217,10 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
 
             <button
               onClick={() => setActiveTab('examples')}
-              className={`pb-3 px-2 transition border-b-2 flex items-center gap-1.5 ${
-                activeTab === 'examples'
+              className={`pb-3 px-2 transition border-b-2 flex items-center gap-1.5 ${activeTab === 'examples'
                   ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400'
                   : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
-              }`}
+                }`}
             >
               <List className="w-3.5 h-3.5" />
               <span>Examples ({exampleList.length})</span>
@@ -231,11 +228,10 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
 
             <button
               onClick={() => setActiveTab('related')}
-              className={`pb-3 px-2 transition border-b-2 flex items-center gap-1.5 ${
-                activeTab === 'related'
+              className={`pb-3 px-2 transition border-b-2 flex items-center gap-1.5 ${activeTab === 'related'
                   ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400'
                   : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
-              }`}
+                }`}
             >
               <Link2 className="w-3.5 h-3.5" />
               <span>Related</span>
@@ -243,11 +239,10 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
 
             <button
               onClick={() => setActiveTab('notes')}
-              className={`pb-3 px-2 transition border-b-2 flex items-center gap-1.5 ${
-                activeTab === 'notes'
+              className={`pb-3 px-2 transition border-b-2 flex items-center gap-1.5 ${activeTab === 'notes'
                   ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400'
                   : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
-              }`}
+                }`}
             >
               <FileText className="w-3.5 h-3.5" />
               <span>Notes</span>
@@ -257,7 +252,7 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
 
         {/* Tab Body Content */}
         <div className="p-6 flex-1 overflow-y-auto space-y-4">
-          
+
           {/* Meaning Tab (Powered by Live Dictionary API) */}
           {activeTab === 'meaning' && (
             <div className="space-y-4">
@@ -281,7 +276,7 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
                     title="Generate simple learner explanation with Gemini AI"
                   >
                     <Sparkles className={`w-3.5 h-3.5 ${loadingAI ? 'animate-spin' : 'text-amber-500'}`} />
-                    <span>{loadingAI ? 'AI Explaining...' : '✨ AI Meaning'}</span>
+                    <span>{loadingAI ? 'AI Explaining...' : ' AI Meaning'}</span>
                   </button>
 
                   <button
@@ -360,77 +355,77 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
                 </div>
               )}
 
-                {isLoadingLive && (
-                  <div className="p-4 rounded-2xl bg-indigo-50/40 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/30 flex items-center justify-center gap-2 text-xs text-indigo-600 dark:text-indigo-400">
-                    <Loader2 className="w-4 h-4 animate-spin text-indigo-500" />
-                    <span>Fetching live definitions & real audio from API...</span>
-                  </div>
-                )}
+              {isLoadingLive && (
+                <div className="p-4 rounded-2xl bg-indigo-50/40 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/30 flex items-center justify-center gap-2 text-xs text-indigo-600 dark:text-indigo-400">
+                  <Loader2 className="w-4 h-4 animate-spin text-indigo-500" />
+                  <span>Fetching live definitions & real audio from API...</span>
+                </div>
+              )}
 
-                {liveData && !isLoadingLive && (
-                  <div className="space-y-3 p-3.5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800">
-                    {/* Audio & Phonetics if present */}
-                    {(liveData.phonetic || liveData.audioUrl) && (
-                      <div className="flex items-center justify-between pb-2 border-b border-slate-200/60 dark:border-slate-700/60">
-                        <span className="font-mono text-xs text-slate-600 dark:text-slate-300">
-                          {liveData.phonetic || word.pronunciation}
-                        </span>
-                        {liveData.audioUrl && (
-                          <button
-                            onClick={playNativeAudio}
-                            className="px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-[11px] flex items-center gap-1 shadow-sm transition"
-                          >
-                            <Volume2 className="w-3.5 h-3.5" />
-                            <span>Play Real Voice</span>
-                          </button>
+              {liveData && !isLoadingLive && (
+                <div className="space-y-3 p-3.5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800">
+                  {/* Audio & Phonetics if present */}
+                  {(liveData.phonetic || liveData.audioUrl) && (
+                    <div className="flex items-center justify-between pb-2 border-b border-slate-200/60 dark:border-slate-700/60">
+                      <span className="font-mono text-xs text-slate-600 dark:text-slate-300">
+                        {liveData.phonetic || word.pronunciation}
+                      </span>
+                      {liveData.audioUrl && (
+                        <button
+                          onClick={playNativeAudio}
+                          className="px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-[11px] flex items-center gap-1 shadow-sm transition"
+                        >
+                          <Volume2 className="w-3.5 h-3.5" />
+                          <span>Play Real Voice</span>
+                        </button>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Categorized Definitions */}
+                  <div className="space-y-2">
+                    {liveData.definitions.map((def, i) => (
+                      <div key={i} className="text-xs space-y-1">
+                        <div className="flex items-start gap-1.5">
+                          <span className="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold uppercase text-[9px] shrink-0 mt-0.5">
+                            {def.partOfSpeech}
+                          </span>
+                          <span className="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">
+                            {def.definition}
+                          </span>
+                        </div>
+                        {def.example && (
+                          <p className="text-slate-500 dark:text-slate-400 italic pl-5 text-[11px]">
+                            "{def.example}"
+                          </p>
                         )}
                       </div>
-                    )}
-
-                    {/* Categorized Definitions */}
-                    <div className="space-y-2">
-                      {liveData.definitions.map((def, i) => (
-                        <div key={i} className="text-xs space-y-1">
-                          <div className="flex items-start gap-1.5">
-                            <span className="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold uppercase text-[9px] shrink-0 mt-0.5">
-                              {def.partOfSpeech}
-                            </span>
-                            <span className="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">
-                              {def.definition}
-                            </span>
-                          </div>
-                          {def.example && (
-                            <p className="text-slate-500 dark:text-slate-400 italic pl-5 text-[11px]">
-                              "{def.example}"
-                            </p>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Live Synonyms */}
-                    {liveData.synonyms && liveData.synonyms.length > 0 && (
-                      <div className="pt-2 border-t border-slate-200/50 dark:border-slate-700/50">
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                          Live Synonyms
-                        </span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {liveData.synonyms.map((s, idx) => (
-                            <span key={idx} className="px-2 py-0.5 rounded-md bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] font-medium border border-slate-200 dark:border-slate-600">
-                              {s}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                    ))}
                   </div>
-                )}
 
-                {liveError && !isLoadingLive && !liveData && (
-                  <p className="text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/20 p-2.5 rounded-xl border border-amber-200/60 dark:border-amber-900/40">
-                    {liveError}
-                  </p>
-                )}
+                  {/* Live Synonyms */}
+                  {liveData.synonyms && liveData.synonyms.length > 0 && (
+                    <div className="pt-2 border-t border-slate-200/50 dark:border-slate-700/50">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                        Live Synonyms
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {liveData.synonyms.map((s, idx) => (
+                          <span key={idx} className="px-2 py-0.5 rounded-md bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] font-medium border border-slate-200 dark:border-slate-600">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {liveError && !isLoadingLive && !liveData && (
+                <p className="text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/20 p-2.5 rounded-xl border border-amber-200/60 dark:border-amber-900/40">
+                  {liveError}
+                </p>
+              )}
             </div>
           )}
 
@@ -441,7 +436,7 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
                 Contextual Sentences
               </span>
               {exampleList.map((sentence, idx) => (
-                <div 
+                <div
                   key={idx}
                   className="flex items-start justify-between gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-800"
                 >
@@ -456,11 +451,10 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
                   <button
                     onClick={() => playSentenceAudio(sentence, idx)}
                     title="Play sentence audio"
-                    className={`p-2 rounded-xl shrink-0 transition ${
-                      playingSentenceIdx === idx
+                    className={`p-2 rounded-xl shrink-0 transition ${playingSentenceIdx === idx
                         ? 'bg-indigo-600 text-white'
                         : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-indigo-950'
-                    }`}
+                      }`}
                   >
                     <Volume2 className="w-4 h-4" />
                   </button>
@@ -478,7 +472,7 @@ export const ExpandedWordModal: React.FC<ExpandedWordModalProps> = ({
               <div className="flex flex-wrap gap-2">
                 {((word.relatedWords && word.relatedWords.length > 0) || (liveData?.synonyms && liveData.synonyms.length > 0)) ? (
                   Array.from(new Set([...(word.relatedWords || []), ...(liveData?.synonyms || [])])).map((rw, i) => (
-                    <span 
+                    <span
                       key={i}
                       className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold"
                     >
